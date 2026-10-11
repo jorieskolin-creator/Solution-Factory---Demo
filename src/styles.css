@@ -7,3 +7,4 @@
 .stage-name{font-size:11px}.stage{min-height:120px}.stage-state{font-size:9px}.line-name h3{font-size:14px}.status-pill{font-size:10px}.current-task>p{font-size:13px}.empty-activity p{font-size:12px}.domain-list>div{font-size:10px}.context-body>p{font-size:12px}.summary-grid small{font-size:11px}.line-help{font-size:11px}.secondary-actions p{font-size:11px}.secondary-actions .rejection{font-size:10px}.rejected-line .line-help{font-size:10px}
 @media(max-width:700px){.line-name h3{font-size:12px}.status-pill{font-size:8px}.line-help{font-size:9px}.secondary-actions p{font-size:10px}.secondary-actions .rejection{font-size:9px}.empty-activity p{font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.deployment-inactive{font-size:9px;color:#6b7c81;display:block;margin-top:4px}

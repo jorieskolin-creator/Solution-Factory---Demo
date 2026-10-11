@@ -43,7 +43,9 @@ The small Express production server serves the Vite build and exposes `GET /heal
 
 ## Railway deployment
 
-Deploy this repository's `codex/cscf-demo` branch into project **CSCF Demo**, one service **cscf-demo**. `railway.toml` defines the asset verification, tests, build, start and health check. Railway supplies the port. Connect a generated Railway HTTPS domain to the service. No environment secrets are required.
+Live application: **https://cscf-demo-production.up.railway.app**. The repository's `codex/cscf-demo` branch is deployed into project **CSCF Demo**, one service **cscf-demo**. The service is pinned to the verified demo commit. To publish a later revision, connect the desired commit explicitly or remove the source pin to follow branch pushes.
+
+`railway.toml` defines the asset verification, tests, build, start and health check. Railway supplies the port. No environment secrets are required.
 
 ## Verification
 
