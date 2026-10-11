@@ -16,10 +16,7 @@ manifest_path = root / 'src/asset-manifest.json'
 manifest = json.loads(manifest_path.read_text())
 pdf = root / 'public/documents' / scenario['approvalFile']
 assert hashlib.sha256(pdf.read_bytes()).hexdigest() == manifest['approvalSha256']
-titles = ['Approval pending and input identity', 'Implementation and verification contracts',
-          'Requirement traceability', 'Acceptance criteria and evidence records',
-          'Acceptance criteria continued', 'Completed workflow and assurance scope',
-          'Human review and release decision']
+titles = manifest['approvalPageTitles']
 out = root / 'public/documents/approval-preview'
 out.mkdir(parents=True, exist_ok=True)
 pages = []
@@ -28,7 +25,7 @@ scratch.mkdir(parents=True, exist_ok=True)
 with tempfile.TemporaryDirectory(dir=scratch, prefix='preview-') as folder:
     assert Path(folder).resolve().is_relative_to(scratch.resolve())
     subprocess.run([args.pdftoppm, '-scale-to', '2000', '-png', str(pdf), str(Path(folder) / 'page')], check=True)
-    rendered = sorted(Path(folder).glob('page-*.png'))
+    rendered = sorted(Path(folder).glob('page-*.png'), key=lambda p: int(p.stem.split('-')[-1]))
     assert len(rendered) == len(titles)
     for index, (source, title) in enumerate(zip(rendered, titles), 1):
         target = out / f'page-{index}.webp'

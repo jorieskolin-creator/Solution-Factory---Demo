@@ -1,53 +1,1129 @@
 {
-  "id": "CSCF-SAE-NB-001", "version": "1.0", "solution": "Solution Assurance Engine", "date": "11 October 2026",
+  "id": "CSCF-SAE-NB-001",
+  "version": "1.1",
+  "solution": "Solution Assurance Engine",
+  "date": "11 October 2026",
   "purpose": "Create evidence-gated readiness analysis for digital solutions by comparing declared purpose, documentation, implementation, tests and observed behaviour. Deterministic controls govern findings and progression; named humans retain formal decision authority.",
-  "inputFile": "SAE-CSCF-New-Build-Brief-v1.0.docx", "approvalFile": "SAE-Document-of-Approval-v1.0.pdf",
+  "inputFile": "SAE-CSCF-New-Build-Brief-v1.1.docx",
+  "approvalFile": "SAE-Document-of-Approval-v1.1.pdf",
   "requirements": [
-    {"id":"SAE-REQ-01","title":"Safe evidence intake and provenance","requirement":"Acquire supported source material as inert evidence. Record source IDs, hashes, locators, extraction methods and limitations before reasoning. Uploaded instructions must not change control logic.","acceptance":"A file containing executable or instruction-like content is never executed. Every acquired unit has a source ID, hash and locator; unreadable units remain explicit limitations.","deliverable":"Source ingestion manifest and local acquisition adapters","testId":"SAE-VER-01","test":"Submit mixed source files with embedded instructions and an unreadable unit; inspect the manifest and confirm that no content is executed.","evidence":"Manifest fixture and acquisition boundary test record","domain":"B, D, F"},
-    {"id":"SAE-REQ-02","title":"Human confirmed intake","requirement":"Present purpose, users, data, autonomy, lifecycle and uncertainty for human review. Only an explicit user action freezes the approved intake and permits assessment.","acceptance":"Assessment cannot start before confirmation. The confirmed snapshot is hashed and bound to the acquisition manifest; unknown fields remain visible.","deliverable":"Intake workspace and immutable confirmation snapshot","testId":"SAE-VER-02","test":"Attempt analysis before confirmation, confirm an intake containing unknowns, and check snapshot and manifest binding.","evidence":"Confirmation gate and snapshot test record","domain":"A, E, F"},
-    {"id":"SAE-REQ-03","title":"Governed knowledge snapshot","requirement":"Validate versioned sources, requirements, controls, anti-patterns and tactics as governed criteria. Methodology must never count as evidence about the assessed solution.","acceptance":"An invalid manifest hash or unknown assessment object prevents activation. Criteria remain separate from case evidence throughout the package.","deliverable":"Knowledge loader with manifest and reference validation","testId":"SAE-VER-03","test":"Load valid and invalid knowledge manifests; submit a claim using an unknown object ID and inspect rejection.","evidence":"Knowledge integrity and reference test record","domain":"A, F"},
-    {"id":"SAE-REQ-04","title":"Complete A to F coverage","requirement":"Apply the six governance domains using 30 capabilities, 30 paired anti-patterns and three primary questions per object. Record explicit results and applicability for all 180 work items.","acceptance":"The coverage matrix accounts for all 180 work items. Missing evidence produces UNKNOWN; exclusions have recorded applicability reasons.","deliverable":"Assessment instrument and complete coverage matrix","testId":"SAE-VER-04","test":"Run a complete synthetic case and a sparse case; verify all work items are accounted for and missing evidence remains UNKNOWN.","evidence":"180 item coverage and sparse evidence test record","domain":"A to F"},
-    {"id":"SAE-REQ-05","title":"Independent verification and finding lock","requirement":"Validate citations and independently challenge candidate claims before they become decision-eligible locked findings. Preserve contradictions, unresolved claims and evidence ceilings.","acceptance":"Broken citations and unsupported claims cannot lock. Code evidence cannot establish TESTED status, and test evidence cannot establish OPERATIONALLY_OBSERVED status.","deliverable":"Claim verifier, adjudication route and finding ledger","testId":"SAE-VER-05","test":"Inject fabricated locators, unsupported claims and excessive assurance states; confirm rejection or unresolved status.","evidence":"Citation, independence and evidence ceiling test record","domain":"D, F"},
-    {"id":"SAE-REQ-06","title":"Deterministic readiness and hard gates","requirement":"Calculate applicability, readiness dimensions and hard gates from governed rules and locked evidence. Aggregate scores and narrative must not override blockers or accept residual risk.","acceptance":"A case with a high diagnostic score and a mandatory blocker remains blocked. Residual risk remains NOT_DETERMINED without authorized evaluation.","deliverable":"Readiness decision kernel and hard gate rules","testId":"SAE-VER-06","test":"Evaluate a high score case containing a blocker and an unevaluated risk; confirm both boundaries remain enforced.","evidence":"Non bypassable gate regression record","domain":"A, D, F"},
-    {"id":"SAE-REQ-07","title":"Exact tactics and reassessment","requirement":"Retrieve only approved tactics mapped to locked capability or anti-pattern IDs. Tactic completion creates new evidence and requires reassessment rather than closing findings automatically.","acceptance":"Keyword similarity alone retrieves no tactic. Unresolved claims retrieve none; completing a mapped tactic does not automatically close its finding.","deliverable":"Finding to tactic mapping and reassessment workflow","testId":"SAE-VER-07","test":"Compare exact ID, keyword-only and unresolved cases; complete a tactic and inspect the still-open finding before reverification.","evidence":"Tactic eligibility and finding lifecycle test record","domain":"D, F"},
-    {"id":"SAE-REQ-08","title":"Controlled narrative and publication integrity","requirement":"Explain locked results without altering scores or inventing actions. Independently check synthesis, quarantine unsupported prose and calculate publication status separately from readiness.","acceptance":"Unsupported prose is withheld or replaced with deterministic wording. REPORT_READY does not change readiness or authorize deployment.","deliverable":"Synthesis fact check and publication gate","testId":"SAE-VER-08","test":"Insert an unsupported narrative claim and compare publication status with unchanged deterministic readiness.","evidence":"Narrative quarantine and publication separation test record","domain":"E, F"},
-    {"id":"SAE-REQ-09","title":"Canonical readiness package and trace","requirement":"Publish one versioned ReadinessPackageV2 for the Assessment Workspace, Assurance Summary and exports. Bind intake, evidence, domains, findings, actions, gates and execution trace.","acceptance":"Workspace and summary display the same package identity and results. Exporting does not recalculate readiness; every decisive finding links to its evidence and governing object.","deliverable":"Canonical package, workspace, summary and exports","testId":"SAE-VER-09","test":"Render the same fixture in both views and an export; compare package identity, decisions and requirement to evidence links.","evidence":"Package identity and view consistency test record","domain":"D, F"},
-    {"id":"SAE-REQ-10","title":"Information boundaries and human authority","requirement":"Keep raw sources process-local and restrict future model calls to approved summaries and confirmed intake. Protect access, audit actions and reserve legal, risk and lifecycle decisions for named humans.","acceptance":"Provider packet fixtures contain no raw files, pixels or secrets. Unauthorized access is denied, audit records omit credentials, and the Engine cannot grant formal approval.","deliverable":"Packet boundary, access controls and authority ledger","testId":"SAE-VER-10","test":"Inspect packet fixtures and access denial cases; attempt an automated approval and confirm refusal.","evidence":"Packet, access and authority boundary test record","domain":"B, C, E, F"}
+    {
+      "id": "SAE-REQ-01",
+      "title": "Safe evidence intake and provenance",
+      "requirement": "Acquire supported source material as inert evidence. Record source IDs, hashes, locators, extraction methods and limitations before reasoning. Uploaded instructions must not change control logic.",
+      "acceptance": "A file containing executable or instruction-like content is never executed. Every acquired unit has a source ID, hash and locator; unreadable units remain explicit limitations.",
+      "deliverable": "Source ingestion manifest and local acquisition adapters",
+      "testId": "SAE-VER-01",
+      "test": "Submit mixed source files with embedded instructions and an unreadable unit; inspect the manifest and confirm that no content is executed.",
+      "evidence": "Manifest fixture and acquisition boundary test record",
+      "domain": "B, D, F"
+    },
+    {
+      "id": "SAE-REQ-02",
+      "title": "Human confirmed intake",
+      "requirement": "Present purpose, users, data, autonomy, lifecycle and uncertainty for human review. Only an explicit user action freezes the approved intake and permits assessment.",
+      "acceptance": "Assessment cannot start before confirmation. The confirmed snapshot is hashed and bound to the acquisition manifest; unknown fields remain visible.",
+      "deliverable": "Intake workspace and immutable confirmation snapshot",
+      "testId": "SAE-VER-02",
+      "test": "Attempt analysis before confirmation, confirm an intake containing unknowns, and check snapshot and manifest binding.",
+      "evidence": "Confirmation gate and snapshot test record",
+      "domain": "A, E, F"
+    },
+    {
+      "id": "SAE-REQ-03",
+      "title": "Governed knowledge snapshot",
+      "requirement": "Validate versioned sources, requirements, controls, anti-patterns and tactics as governed criteria. Methodology must never count as evidence about the assessed solution.",
+      "acceptance": "An invalid manifest hash or unknown assessment object prevents activation. Criteria remain separate from case evidence throughout the package.",
+      "deliverable": "Knowledge loader with manifest and reference validation",
+      "testId": "SAE-VER-03",
+      "test": "Load valid and invalid knowledge manifests; submit a claim using an unknown object ID and inspect rejection.",
+      "evidence": "Knowledge integrity and reference test record",
+      "domain": "A, F"
+    },
+    {
+      "id": "SAE-REQ-04",
+      "title": "Complete A to F coverage",
+      "requirement": "Apply the six governance domains using 30 capabilities, 30 paired anti-patterns and three primary questions per object. Record explicit results and applicability for all 180 work items.",
+      "acceptance": "The coverage matrix accounts for all 180 work items. Missing evidence produces UNKNOWN; exclusions have recorded applicability reasons.",
+      "deliverable": "Assessment instrument and complete coverage matrix",
+      "testId": "SAE-VER-04",
+      "test": "Run a complete synthetic case and a sparse case; verify all work items are accounted for and missing evidence remains UNKNOWN.",
+      "evidence": "180 item coverage and sparse evidence test record",
+      "domain": "A to F"
+    },
+    {
+      "id": "SAE-REQ-05",
+      "title": "Independent verification and finding lock",
+      "requirement": "Validate citations and independently challenge candidate claims before they become decision-eligible locked findings. Preserve contradictions, unresolved claims and evidence ceilings.",
+      "acceptance": "Broken citations and unsupported claims cannot lock. Code evidence cannot establish TESTED status, and test evidence cannot establish OPERATIONALLY_OBSERVED status.",
+      "deliverable": "Claim verifier, adjudication route and finding ledger",
+      "testId": "SAE-VER-05",
+      "test": "Inject fabricated locators, unsupported claims and excessive assurance states; confirm rejection or unresolved status.",
+      "evidence": "Citation, independence and evidence ceiling test record",
+      "domain": "D, F"
+    },
+    {
+      "id": "SAE-REQ-06",
+      "title": "Deterministic readiness and hard gates",
+      "requirement": "Calculate applicability, readiness dimensions and hard gates from governed rules and locked evidence. Aggregate scores and narrative must not override blockers or accept residual risk.",
+      "acceptance": "A case with a high diagnostic score and a mandatory blocker remains blocked. Residual risk remains NOT_DETERMINED without authorized evaluation.",
+      "deliverable": "Readiness decision kernel and hard gate rules",
+      "testId": "SAE-VER-06",
+      "test": "Evaluate a high score case containing a blocker and an unevaluated risk; confirm both boundaries remain enforced.",
+      "evidence": "Non bypassable gate regression record",
+      "domain": "A, D, F"
+    },
+    {
+      "id": "SAE-REQ-07",
+      "title": "Exact tactics and reassessment",
+      "requirement": "Retrieve only approved tactics mapped to locked capability or anti-pattern IDs. Tactic completion creates new evidence and requires reassessment rather than closing findings automatically.",
+      "acceptance": "Keyword similarity alone retrieves no tactic. Unresolved claims retrieve none; completing a mapped tactic does not automatically close its finding.",
+      "deliverable": "Finding to tactic mapping and reassessment workflow",
+      "testId": "SAE-VER-07",
+      "test": "Compare exact ID, keyword-only and unresolved cases; complete a tactic and inspect the still-open finding before reverification.",
+      "evidence": "Tactic eligibility and finding lifecycle test record",
+      "domain": "D, F"
+    },
+    {
+      "id": "SAE-REQ-08",
+      "title": "Controlled narrative and publication integrity",
+      "requirement": "Explain locked results without altering scores or inventing actions. Independently check synthesis, quarantine unsupported prose and calculate publication status separately from readiness.",
+      "acceptance": "Unsupported prose is withheld or replaced with deterministic wording. REPORT_READY does not change readiness or authorize deployment.",
+      "deliverable": "Synthesis fact check and publication gate",
+      "testId": "SAE-VER-08",
+      "test": "Insert an unsupported narrative claim and compare publication status with unchanged deterministic readiness.",
+      "evidence": "Narrative quarantine and publication separation test record",
+      "domain": "E, F"
+    },
+    {
+      "id": "SAE-REQ-09",
+      "title": "Canonical readiness package and trace",
+      "requirement": "Publish one versioned ReadinessPackageV2 for the Assessment Workspace, Assurance Summary and exports. Bind intake, evidence, domains, findings, actions, gates and execution trace.",
+      "acceptance": "Workspace and summary display the same package identity and results. Exporting does not recalculate readiness; every decisive finding links to its evidence and governing object.",
+      "deliverable": "Canonical package, workspace, summary and exports",
+      "testId": "SAE-VER-09",
+      "test": "Render the same fixture in both views and an export; compare package identity, decisions and requirement to evidence links.",
+      "evidence": "Package identity and view consistency test record",
+      "domain": "D, F"
+    },
+    {
+      "id": "SAE-REQ-10",
+      "title": "Information boundaries and human authority",
+      "requirement": "Keep raw sources process-local and restrict future model calls to approved summaries and confirmed intake. Protect access, audit actions and reserve legal, risk and lifecycle decisions for named humans.",
+      "acceptance": "Provider packet fixtures contain no raw files, pixels or secrets. Unauthorized access is denied, audit records omit credentials, and the Engine cannot grant formal approval.",
+      "deliverable": "Packet boundary, access controls and authority ledger",
+      "testId": "SAE-VER-10",
+      "test": "Inspect packet fixtures and access denial cases; attempt an automated approval and confirm refusal.",
+      "evidence": "Packet, access and authority boundary test record",
+      "domain": "B, C, E, F"
+    }
   ],
-  "domains":[
-    {"id":"A","name":"Purpose, value & classification"}, {"id":"B","name":"Data, privacy, confidentiality & IP"},
-    {"id":"C","name":"Models, agents, providers & supply chain"}, {"id":"D","name":"Architecture, security, robustness & evaluation"},
-    {"id":"E","name":"Human impact, fairness & oversight"}, {"id":"F","name":"Accountability, evidence & lifecycle"}
+  "domains": [
+    {
+      "id": "A",
+      "name": "Purpose, value & classification"
+    },
+    {
+      "id": "B",
+      "name": "Data, privacy, confidentiality & IP"
+    },
+    {
+      "id": "C",
+      "name": "Models, agents, providers & supply chain"
+    },
+    {
+      "id": "D",
+      "name": "Architecture, security, robustness & evaluation"
+    },
+    {
+      "id": "E",
+      "name": "Human impact, fairness & oversight"
+    },
+    {
+      "id": "F",
+      "name": "Accountability, evidence & lifecycle"
+    }
   ],
-  "stages":[
-    {"id":1,"name":"Impact & Applicability Classification","short":"Impact","nodes":"01-04","duration":21,"tasks":[
-      {"title":"Register the SAE build intent","detail":"Bind CSCF-SAE-NB-001 v1.0 to the declared purpose, intended users and proposed delivery boundary.","refs":["SAE-REQ-02","SAE-REQ-09"]},
-      {"title":"Establish the evidence and target state","detail":"Inventory the brief as declared source material. Separate proposed architecture from implemented or tested claims.","refs":["SAE-REQ-01","SAE-REQ-05"]},
-      {"title":"Map affected boundaries","detail":"Trace local evidence intake, future model packets, assessment workspaces and named human decision rights.","refs":["SAE-REQ-10"]}]},
-    {"id":2,"name":"Obligations Selected","short":"Obligations","nodes":"05","duration":14,"tasks":[
-      {"title":"Activate applicable control packs","detail":"Select security, privacy, AI governance and evidence integrity requirements for the SAE target design.","refs":["SAE-REQ-03","SAE-REQ-10"]},
-      {"title":"Bind obligations to required proof","detail":"Associate source boundaries and A-F controls with acceptance criteria; preserve unknown applicability for human resolution.","refs":["SAE-REQ-04","SAE-REQ-06"]}]},
-    {"id":3,"name":"Approved Requirement / Hypothesis","short":"Requirements","nodes":"06","duration":14,"tasks":[
-      {"title":"Establish the purpose baseline","detail":"Record the scenario's purpose and users. The Engine supports readiness decisions; named humans retain approval authority.","refs":["SAE-REQ-02","SAE-REQ-10"]},
-      {"title":"Freeze ten acceptance requirements","detail":"Check SAE-REQ-01 through SAE-REQ-10 for measurable proof conditions and record the prepared demo owner decision.","refs":["SAE-REQ-01","SAE-REQ-09"]}]},
-    {"id":4,"name":"Contract Creation","short":"Contracts","nodes":"07-08","duration":21,"tasks":[
-      {"title":"Prepare the implementation contract","detail":"Bound deliverables to safe intake, governed knowledge, assessment, finding lock, readiness, actions and canonical outputs.","refs":["SAE-REQ-01","SAE-REQ-03","SAE-REQ-09"]},
-      {"title":"Derive independent verification","detail":"Bind SAE-VER-01 through SAE-VER-10 to the original requirements, including negative and missing-evidence cases.","refs":["SAE-REQ-05","SAE-REQ-06","SAE-REQ-07"]},
-      {"title":"Check contract readiness","detail":"Confirm complete requirement coverage, protected authority boundaries and the scoped demo work packet.","refs":["SAE-REQ-08","SAE-REQ-10"]}]},
-    {"id":5,"name":"Execution","short":"Execution","nodes":"09-11","duration":28,"tasks":[
-      {"title":"Authorize the bounded executor","detail":"Simulate an approved implementation route. The executor receives no authority to clear gates, accept risk or deploy.","refs":["SAE-REQ-06","SAE-REQ-10"]},
-      {"title":"Prepare acquisition and intake deliverables","detail":"Load prepared source manifests, confirmation snapshots and knowledge integrity fixtures for the demonstration.","refs":["SAE-REQ-01","SAE-REQ-02","SAE-REQ-03"]},
-      {"title":"Prepare the assessment and control candidate","detail":"Load the scripted A-F coverage, claim verification, finding lock and deterministic readiness deliverables.","refs":["SAE-REQ-04","SAE-REQ-05","SAE-REQ-06"]},
-      {"title":"Capture candidate outputs","detail":"Register prepared tactic mapping, publication and canonical package outputs as candidate deliverables awaiting verification.","refs":["SAE-REQ-07","SAE-REQ-08","SAE-REQ-09"]}]},
-    {"id":6,"name":"Compare & Gate","short":"Verification","nodes":"12-16","duration":28,"tasks":[
-      {"title":"Review structural and security checks","detail":"Show prepared build, dependency, secrets and access-boundary check results. These are simulated scenario records.","refs":["SAE-REQ-01","SAE-REQ-03","SAE-REQ-10"]},
-      {"title":"Verify behavior and negative cases","detail":"Review human confirmation, 180-item coverage and unsupported-claim rejection against SAE-VER-02, 04 and 05.","refs":["SAE-REQ-02","SAE-REQ-04","SAE-REQ-05"]},
-      {"title":"Challenge gate and tactic boundaries","detail":"Review high-score blockers, exact-ID tactic eligibility and the requirement for reverification before finding closure.","refs":["SAE-REQ-06","SAE-REQ-07"]},
-      {"title":"Complete the requirement proof map","detail":"Compare publication integrity, canonical outputs and human authority with the ten acceptance criteria.","refs":["SAE-REQ-08","SAE-REQ-09","SAE-REQ-10"]}]},
-    {"id":7,"name":"Assurance Expansion","short":"Assurance","nodes":"17-19","duration":14,"tasks":[
-      {"title":"Review assurance across A-F","detail":"Expand from local controls to affected information boundaries and the whole SAE purpose and governance design.","refs":["SAE-REQ-04","SAE-REQ-10"]},
-      {"title":"Check acceptance and remediation status","detail":"Record the scripted verification route as satisfied. Production effectiveness remains unobserved; formal approval stays pending.","refs":["SAE-REQ-05","SAE-REQ-07","SAE-REQ-08"]}]},
-    {"id":8,"name":"Release Gate & Deployment","short":"Release gate","nodes":"20","duration":10,"tasks":[
-      {"title":"Assemble the document of approval","detail":"Match the prepared readiness package to CSCF-SAE-NB-001 v1.0. Hold the workflow for a human decision without deployment.","refs":["SAE-REQ-06","SAE-REQ-09","SAE-REQ-10"]}]}
+  "stages": [
+    {
+      "id": 1,
+      "name": "Impact & Applicability Classification",
+      "short": "Impact",
+      "nodes": "01-04",
+      "duration": 21,
+      "tasks": [
+        {
+          "title": "Register the SAE build intent",
+          "detail": "Register demand, target solution, owner, purpose, expected outcome, priority, delivery context and target-state hypothesis from CSCF-SAE-NB-001 v1.1. Preserve declared facts and unknowns.",
+          "refs": [
+            "SAE-REQ-02",
+            "SAE-REQ-09"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Establish the evidence and target state",
+          "detail": "Inventory the brief as declared source material. Separate proposed architecture from implemented or tested claims.",
+          "refs": [
+            "SAE-REQ-01",
+            "SAE-REQ-05"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Map affected boundaries",
+          "detail": "Trace local evidence intake, future model packets, assessment workspaces and named human decision rights.",
+          "refs": [
+            "SAE-REQ-10"
+          ],
+          "testRefs": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Obligations Selected",
+      "short": "Obligations",
+      "nodes": "05",
+      "duration": 14,
+      "tasks": [
+        {
+          "title": "Select tests from intake and governed rules",
+          "detail": "Activate KB-STRUCT, KB-BEHAV, KB-IMPACT, KB-EVID, KB-POLICY and KB-SCOPE using the confirmed intake facts. Record the container check as not applicable.",
+          "refs": [
+            "SAE-REQ-03",
+            "SAE-REQ-10"
+          ],
+          "testRefs": [
+            "SAE-TST-01",
+            "SAE-TST-08",
+            "SAE-TST-24"
+          ]
+        },
+        {
+          "title": "Merge owner requested additional tests",
+          "detail": "Bind required tests to SAE-REQ-01 through 10. Add the three Additional Tests for knowledge promotion, blocker/tactic interaction and canonical publication integrity.",
+          "refs": [
+            "SAE-REQ-04",
+            "SAE-REQ-06"
+          ],
+          "testRefs": [
+            "SAE-ADD-01",
+            "SAE-ADD-02",
+            "SAE-ADD-03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Approved Requirement / Hypothesis",
+      "short": "Requirements",
+      "nodes": "06",
+      "duration": 14,
+      "tasks": [
+        {
+          "title": "Establish the purpose baseline",
+          "detail": "Record the declared purpose and users. The Engine supports readiness decisions; named humans retain approval authority.",
+          "refs": [
+            "SAE-REQ-02",
+            "SAE-REQ-10"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Freeze ten acceptance requirements",
+          "detail": "Check SAE-REQ-01 through SAE-REQ-10 for measurable proof conditions and record the owner confirmation requirement.",
+          "refs": [
+            "SAE-REQ-01",
+            "SAE-REQ-09"
+          ],
+          "testRefs": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Contract Creation",
+      "short": "Contracts",
+      "nodes": "07-08",
+      "duration": 21,
+      "tasks": [
+        {
+          "title": "Prepare the implementation contract",
+          "detail": "Bound deliverables to safe intake, governed knowledge, assessment, finding lock, readiness, actions and canonical outputs.",
+          "refs": [
+            "SAE-REQ-01",
+            "SAE-REQ-03",
+            "SAE-REQ-09"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Derive independent verification",
+          "detail": "Freeze 26 applicable tests and one explicit exclusion alongside SAE-VER-01 through 10. Keep verification independent, with missing-evidence and negative cases.",
+          "refs": [
+            "SAE-REQ-05",
+            "SAE-REQ-06",
+            "SAE-REQ-07"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Check contract readiness",
+          "detail": "Confirm complete requirement coverage, protected authority boundaries and the scoped work packet.",
+          "refs": [
+            "SAE-REQ-08",
+            "SAE-REQ-10"
+          ],
+          "testRefs": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Execution",
+      "short": "Execution",
+      "nodes": "09-11",
+      "duration": 28,
+      "tasks": [
+        {
+          "title": "Authorize the bounded executor",
+          "detail": "Bind the approved implementation route. The executor receives no authority to clear gates, accept risk or deploy.",
+          "refs": [
+            "SAE-REQ-06",
+            "SAE-REQ-10"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Prepare acquisition and intake deliverables",
+          "detail": "Register source manifests, confirmation snapshots and knowledge integrity fixtures against the confirmed baseline.",
+          "refs": [
+            "SAE-REQ-01",
+            "SAE-REQ-02",
+            "SAE-REQ-03"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Prepare the assessment and control candidate",
+          "detail": "Register the A-F coverage, claim verification, finding lock and deterministic readiness deliverables.",
+          "refs": [
+            "SAE-REQ-04",
+            "SAE-REQ-05",
+            "SAE-REQ-06"
+          ],
+          "testRefs": []
+        },
+        {
+          "title": "Capture candidate outputs",
+          "detail": "Register tactic mapping, publication and canonical package outputs as candidate deliverables awaiting verification.",
+          "refs": [
+            "SAE-REQ-07",
+            "SAE-REQ-08",
+            "SAE-REQ-09"
+          ],
+          "testRefs": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Compare & Gate",
+      "short": "Verification",
+      "nodes": "12-16",
+      "duration": 28,
+      "tasks": [
+        {
+          "title": "Review structural and supply chain results",
+          "detail": "Review compile, typecheck, lint, schema, SAST, SCA, secrets, configuration, SBOM, allowed-path and artifact-integrity records. Container applicability stays explicit.",
+          "refs": [
+            "SAE-REQ-01",
+            "SAE-REQ-03",
+            "SAE-REQ-10"
+          ],
+          "testRefs": [
+            "SAE-TST-01",
+            "SAE-TST-04",
+            "SAE-TST-05",
+            "SAE-TST-08"
+          ]
+        },
+        {
+          "title": "Review behavioral adversarial and regression results",
+          "detail": "Review unit, integration, API, end-to-end, negative, authentication, recovery, privacy, accessibility, DAST and regression checks, including all 180 assessment work items.",
+          "refs": [
+            "SAE-REQ-02",
+            "SAE-REQ-04",
+            "SAE-REQ-05"
+          ],
+          "testRefs": [
+            "SAE-TST-09",
+            "SAE-TST-11",
+            "SAE-TST-15",
+            "SAE-TST-17"
+          ]
+        },
+        {
+          "title": "Recheck impact and verify evidence quality",
+          "detail": "Compare authorized scope with actual impact. Check dependency, permission and data-flow boundaries, source revisions, citations, contradictions and evidence ceilings.",
+          "refs": [
+            "SAE-REQ-06",
+            "SAE-REQ-07"
+          ],
+          "testRefs": [
+            "SAE-TST-18",
+            "SAE-TST-19",
+            "SAE-TST-20",
+            "SAE-TST-21"
+          ]
+        },
+        {
+          "title": "Complete policy traces and additional test review",
+          "detail": "Traverse authority to control, contract, enforcement evidence, finding and gate. Review all owner-requested tests and retain approval as a human decision.",
+          "refs": [
+            "SAE-REQ-08",
+            "SAE-REQ-09",
+            "SAE-REQ-10"
+          ],
+          "testRefs": [
+            "SAE-TST-22",
+            "SAE-TST-23",
+            "SAE-ADD-01",
+            "SAE-ADD-02",
+            "SAE-ADD-03"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Assurance Expansion",
+      "short": "Assurance",
+      "nodes": "17-19",
+      "duration": 14,
+      "tasks": [
+        {
+          "title": "Review assurance across A-F",
+          "detail": "Expand from local controls to affected information boundaries and the whole SAE purpose and governance design.",
+          "refs": [
+            "SAE-REQ-04",
+            "SAE-REQ-10"
+          ],
+          "testRefs": [
+            "SAE-TST-24"
+          ]
+        },
+        {
+          "title": "Check acceptance and remediation status",
+          "detail": "Review verification findings against the acceptance baseline. Production effectiveness remains unobserved; formal approval stays pending.",
+          "refs": [
+            "SAE-REQ-05",
+            "SAE-REQ-07",
+            "SAE-REQ-08"
+          ],
+          "testRefs": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Release Gate & Deployment",
+      "short": "Release gate",
+      "nodes": "20",
+      "duration": 10,
+      "tasks": [
+        {
+          "title": "Assemble the document of approval",
+          "detail": "Assemble the approval package with intake identity, requirement traces, selected tests, results, exclusions and release conditions. Stop for the named human decision.",
+          "refs": [
+            "SAE-REQ-06",
+            "SAE-REQ-09",
+            "SAE-REQ-10"
+          ],
+          "testRefs": []
+        }
+      ]
+    }
+  ],
+  "recordBasis": "Results belong to the prepared reference case and are not execution evidence for a production SAE candidate.",
+  "candidateId": "SAE-REF-001",
+  "intake": {
+    "changeIdentity": "CSCF-SAE-NB-001",
+    "entryMode": "New Build",
+    "triggerType": "Customer demand and governance improvement opportunity",
+    "demand": "Solution owners need a consistent way to determine what evidence supports readiness, identify missing proof and route accountable human decisions.",
+    "targetSystem": "Proposed Solution Assurance Engine, a new application with controlled reasoning adapters and deterministic assurance services.",
+    "accountableOwner": "Jori Eskolin, solution owner; accountable for purpose, scope and intake confirmation.",
+    "stakeholderAuthority": "Solution owner confirms intent; independent assurance lead reviews findings; security and privacy owners approve controls; release authority decides deployment. Named reviewer appointments remain pending.",
+    "expectedOutcome": "One traceable ReadinessPackageV2, consistent workspace and summary views, grounded actions and an approval package preserving unknowns and human decision boundaries.",
+    "priority": "High: establish the assurance foundation before introducing autonomous execution or a production release.",
+    "deliveryContext": "Initial controlled pilot for solution owners, architects and governance reviewers; release requires a confirmed target environment and named authorities.",
+    "targetStateHypothesis": "Combining governed A-F knowledge, attributable evidence, independent verification and deterministic gates can produce reproducible readiness recommendations without transferring approval authority.",
+    "declaredFacts": "New solution; A-F assessment instrument; 30 capabilities and 30 anti-patterns with three primary questions each; confirmed intake; raw-source locality; one canonical package; human release authority.",
+    "unknowns": "Production hosting, retention periods, identity provider, approved reasoning providers, operational service levels and named independent reviewers remain to be confirmed.",
+    "currentState": "No accepted production SAE baseline is supplied. The target-state hypothesis defines the starting boundary.",
+    "duplicateCheck": "Use change identity and solution register to check for duplicate or overlapping demand before authorizing an executable contract.",
+    "facts": {
+      "newBuild": true,
+      "sourceDocuments": true,
+      "personalOrConfidentialData": true,
+      "boundedReasoning": true,
+      "webWorkspace": true,
+      "roleBasedAccess": true,
+      "governedKnowledge": true,
+      "canonicalExports": true,
+      "deterministicGates": true,
+      "externalDependencies": true,
+      "containerTarget": false,
+      "criticalCoverageMutation": false
+    }
+  },
+  "testSelection": {
+    "knowledgeSnapshot": "SAE-KB-BASELINE-001 v1.1",
+    "method": "Classify confirmed intake facts, activate governed rule packs, bind required tests to acceptance criteria, merge owner-requested additional tests, then freeze an independently reviewed Verification Contract.",
+    "gatePolicy": "A failed mandatory test, missing essential execution evidence, unsupported decision-critical claim or unresolved authority decision blocks release. UNKNOWN never becomes PASS by omission; exceptions require named authority, scope and expiry.",
+    "packs": [
+      {
+        "id": "KB-STRUCT-01",
+        "name": "Structural and software supply chain",
+        "nodes": "12"
+      },
+      {
+        "id": "KB-BEHAV-01",
+        "name": "Behavioral adversarial and regression",
+        "nodes": "13"
+      },
+      {
+        "id": "KB-IMPACT-01",
+        "name": "Actual impact and architecture invariants",
+        "nodes": "14"
+      },
+      {
+        "id": "KB-EVID-01",
+        "name": "Semantic claims and evidence quality",
+        "nodes": "15"
+      },
+      {
+        "id": "KB-POLICY-01",
+        "name": "Policy enforcement and authority",
+        "nodes": "16"
+      },
+      {
+        "id": "KB-SCOPE-01",
+        "name": "Assurance scope and materiality",
+        "nodes": "17"
+      }
+    ]
+  },
+  "testCatalog": [
+    {
+      "id": "SAE-TST-01",
+      "title": "Build typecheck and lint",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R01",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-09",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Compile the candidate and apply type and lint checks to supported targets.",
+      "acceptance": "No build errors, incompatible types or mandatory lint failures.",
+      "result": "PASS",
+      "record": "Build constraints satisfied in the reference record.",
+      "evidenceId": "REF-TST-01",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-02",
+      "title": "API and schema contracts",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R02",
+      "source": "Knowledge base",
+      "when": [
+        "canonicalExports"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Validate manifest, intake and ReadinessPackageV2 schemas; reject incompatible API changes.",
+      "acceptance": "Required fields and exact versioned object references remain valid.",
+      "result": "PASS",
+      "record": "Compatible schemas; malformed and incompatible payloads rejected.",
+      "evidenceId": "REF-TST-02",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-03",
+      "title": "Authorized paths and artifact integrity",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R03",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-03",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Compare candidate paths with the contract allowlist and verify artifact hashes.",
+      "acceptance": "No forbidden path changes; package hashes match the assessed revision.",
+      "result": "PASS",
+      "record": "Allowed paths preserved; altered artifact rejected.",
+      "evidenceId": "REF-TST-03",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-04",
+      "title": "Static application security",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R04",
+      "source": "Knowledge base",
+      "when": [
+        "webWorkspace"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Apply SAST rules to parsers, packet builders, access paths and rendering sinks.",
+      "acceptance": "No unresolved mandatory injection or unsafe-data-flow findings.",
+      "result": "PASS",
+      "record": "Unsafe-path challenge blocked; mandatory checks satisfied.",
+      "evidenceId": "REF-TST-04",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-05",
+      "title": "Dependencies and supply chain",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R05",
+      "source": "Knowledge base",
+      "when": [
+        "externalDependencies"
+      ],
+      "requirements": [
+        "SAE-REQ-03",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Run dependency and SCA policy checks; inspect the SBOM, supplier restrictions and licenses.",
+      "acceptance": "No unresolved prohibited dependency, license or critical vulnerability.",
+      "result": "PASS",
+      "record": "Dependency inventory and supplier-policy coverage complete.",
+      "evidenceId": "REF-TST-05",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-06",
+      "title": "Secrets and configuration",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R06",
+      "source": "Knowledge base",
+      "when": [
+        "roleBasedAccess"
+      ],
+      "requirements": [
+        "SAE-REQ-10"
+      ],
+      "procedure": "Scan source and exports for secrets; validate runtime and infrastructure configuration.",
+      "acceptance": "Credentials absent from source, packet payloads and audit exports; required settings enforced.",
+      "result": "PASS",
+      "record": "Secret sentinel excluded; insecure configuration rejected.",
+      "evidenceId": "REF-TST-06",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-07",
+      "title": "Source manifests and provenance",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R07",
+      "source": "Knowledge base",
+      "when": [
+        "sourceDocuments"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-03"
+      ],
+      "procedure": "Validate checksums, media types, parse states and provenance on every source record.",
+      "acceptance": "Malformed or unsupported material is explicit; manifests never become authoritative knowledge.",
+      "result": "PASS",
+      "record": "Tampered source rejected; provenance references preserved.",
+      "evidenceId": "REF-TST-07",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-08",
+      "title": "Container image scanning",
+      "blueprintNode": "12",
+      "pack": "KB-STRUCT-01",
+      "ruleId": "KB-STRUCT-01-R08",
+      "source": "Knowledge base",
+      "when": [
+        "containerTarget"
+      ],
+      "requirements": [
+        "SAE-REQ-10"
+      ],
+      "procedure": "If a container target is selected, scan the exact image and deployment configuration.",
+      "acceptance": "Required image checks pass for a confirmed container deployment target.",
+      "result": "NOT_APPLICABLE",
+      "record": "Container target not selected in the intake; reclassification required if it changes.",
+      "evidenceId": "REF-TST-08",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-09",
+      "title": "Unit integration and API behavior",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R09",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-02",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Exercise acquisition, confirmation, package construction and service boundaries.",
+      "acceptance": "Normal paths produce the expected typed outputs; invalid inputs remain explicit.",
+      "result": "PASS",
+      "record": "Expected outputs and invalid-input behavior match acceptance criteria.",
+      "evidenceId": "REF-TST-09",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-10",
+      "title": "End to end human confirmed intake",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R10",
+      "source": "Knowledge base",
+      "when": [
+        "webWorkspace"
+      ],
+      "requirements": [
+        "SAE-REQ-02",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Follow intake review, confirmation, assessment and consistent export views.",
+      "acceptance": "Unconfirmed intake cannot start assessment; confirmed snapshot is used everywhere.",
+      "result": "PASS",
+      "record": "Early assessment denied; confirmed snapshot retained across views.",
+      "evidenceId": "REF-TST-10",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-11",
+      "title": "Negative and adversarial evidence",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R11",
+      "source": "Knowledge base",
+      "when": [
+        "sourceDocuments"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-05",
+        "SAE-REQ-08"
+      ],
+      "procedure": "Challenge fabricated citations, prompt-like source instructions, unsupported claims and missing proof.",
+      "acceptance": "Source content cannot override controls or silently satisfy an evidence obligation.",
+      "result": "PASS",
+      "record": "Fabricated locator and source-instruction challenge rejected.",
+      "evidenceId": "REF-TST-11",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-12",
+      "title": "Authentication and authorization",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R12",
+      "source": "Knowledge base",
+      "when": [
+        "roleBasedAccess"
+      ],
+      "requirements": [
+        "SAE-REQ-02",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Exercise owner, reviewer and approver rights, including unauthorized access attempts.",
+      "acceptance": "Only the authorized role performs each protected action; denials are attributable.",
+      "result": "PASS",
+      "record": "Unauthorized confirmation, evidence access and approval denied.",
+      "evidenceId": "REF-TST-12",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-13",
+      "title": "Failure recovery and incomplete execution",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R13",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-05",
+        "SAE-REQ-06"
+      ],
+      "procedure": "Interrupt parsing and verification, retry safely and test missing essential execution evidence.",
+      "acceptance": "No false pass after interruption; recovery preserves package identity and UNKNOWN states.",
+      "result": "PASS",
+      "record": "Incomplete proof remains UNKNOWN; retry does not duplicate findings.",
+      "evidenceId": "REF-TST-13",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-14",
+      "title": "Privacy and provider packet boundary",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R14",
+      "source": "Knowledge base",
+      "when": [
+        "personalOrConfidentialData"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Inspect approved summaries, model packets, exports and audit data with raw-data and credential sentinels.",
+      "acceptance": "Raw files, pixels and secrets stay outside provider packets; minimized fields only.",
+      "result": "PASS",
+      "record": "Boundary sentinels excluded; unsupported disclosure blocked.",
+      "evidenceId": "REF-TST-14",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-15",
+      "title": "Accessibility",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R15",
+      "source": "Knowledge base",
+      "when": [
+        "webWorkspace"
+      ],
+      "requirements": [
+        "SAE-REQ-09",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Check keyboard navigation, focus order, labels, contrast and error announcements.",
+      "acceptance": "Key intake, findings and review actions are accessible without a pointer.",
+      "result": "PASS",
+      "record": "Keyboard paths, focus and readable status announcements satisfy the case.",
+      "evidenceId": "REF-TST-15",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-16",
+      "title": "Dynamic security and penetration paths",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R16",
+      "source": "Knowledge base",
+      "when": [
+        "webWorkspace"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Apply DAST and penetration scenarios to parser inputs, session boundaries and protected API routes.",
+      "acceptance": "No unresolved mandatory exploit path within the confirmed attack surface.",
+      "result": "PASS",
+      "record": "Injection and unauthorized-session paths denied in the reference case.",
+      "evidenceId": "REF-TST-16",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-17",
+      "title": "Regression differential and instrument coverage",
+      "blueprintNode": "13",
+      "pack": "KB-BEHAV-01",
+      "ruleId": "KB-BEHAV-01-R17",
+      "source": "Knowledge base",
+      "when": [
+        "governedKnowledge"
+      ],
+      "requirements": [
+        "SAE-REQ-04",
+        "SAE-REQ-06",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Compare accepted baseline outputs and coverage across all 180 work items, including unknown cases.",
+      "acceptance": "No dropped work item or weakened blocker; output differences are attributable.",
+      "result": "PASS",
+      "record": "180 of 180 work items accounted for; blocker behavior preserved. Mutation testing is not mandated by this baseline.",
+      "evidenceId": "REF-TST-17",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-18",
+      "title": "Actual versus authorized impact",
+      "blueprintNode": "14",
+      "pack": "KB-IMPACT-01",
+      "ruleId": "KB-IMPACT-01-R18",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-09",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Compare candidate changes, API schemas and configuration with the predicted affected-system slice.",
+      "acceptance": "No material unplanned scope or architecture-invariant change.",
+      "result": "PASS",
+      "record": "Observed reference boundary matches the authorized slice.",
+      "evidenceId": "REF-TST-18",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-19",
+      "title": "Dependency data flow and permission changes",
+      "blueprintNode": "14",
+      "pack": "KB-IMPACT-01",
+      "ruleId": "KB-IMPACT-01-R19",
+      "source": "Knowledge base",
+      "when": [
+        "personalOrConfidentialData"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Traverse dependencies, access paths, personal-data flows and third-party calls.",
+      "acceptance": "All affected services and trust boundaries are declared; new impact reopens applicability.",
+      "result": "PASS",
+      "record": "Local intake and approved-provider boundaries accounted for; scope stable.",
+      "evidenceId": "REF-TST-19",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-20",
+      "title": "Citation revision and semantic support",
+      "blueprintNode": "15",
+      "pack": "KB-EVID-01",
+      "ruleId": "KB-EVID-01-R20",
+      "source": "Knowledge base",
+      "when": [
+        "sourceDocuments"
+      ],
+      "requirements": [
+        "SAE-REQ-05",
+        "SAE-REQ-08"
+      ],
+      "procedure": "Resolve claim locators and source hashes; compare claimed implementation with supporting records.",
+      "acceptance": "Only supported claims satisfy obligations; mismatched revisions remain unresolved.",
+      "result": "PASS",
+      "record": "Fabricated locator rejected; decisive claims bound to exact reference records.",
+      "evidenceId": "REF-TST-20",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-21",
+      "title": "Evidence ceilings contradictions and finding lock",
+      "blueprintNode": "15",
+      "pack": "KB-EVID-01",
+      "ruleId": "KB-EVID-01-R21",
+      "source": "Knowledge base",
+      "when": [
+        "governedKnowledge"
+      ],
+      "requirements": [
+        "SAE-REQ-04",
+        "SAE-REQ-05"
+      ],
+      "procedure": "Challenge evidence quality, conflicting sources and incomplete human review before finding lock.",
+      "acceptance": "No unsupported locked finding; unknowns and evidence ceilings survive synthesis.",
+      "result": "PASS",
+      "record": "Conflicting proof withheld from lock; UNKNOWN preserved.",
+      "evidenceId": "REF-TST-21",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-22",
+      "title": "Policy enforcement trace",
+      "blueprintNode": "16",
+      "pack": "KB-POLICY-01",
+      "ruleId": "KB-POLICY-01-R22",
+      "source": "Knowledge base",
+      "when": [
+        "deterministicGates"
+      ],
+      "requirements": [
+        "SAE-REQ-03",
+        "SAE-REQ-06",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Traverse authority, applicability, control, contract, enforcement point, evidence, finding and gate.",
+      "acceptance": "Every active mandatory obligation has a complete exact-ID trace and enforcement evidence.",
+      "result": "PASS",
+      "record": "Required trace chains complete; missing-control case blocks readiness.",
+      "evidenceId": "REF-TST-22",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-23",
+      "title": "Human authority and exceptions",
+      "blueprintNode": "16",
+      "pack": "KB-POLICY-01",
+      "ruleId": "KB-POLICY-01-R23",
+      "source": "Knowledge base",
+      "when": [
+        "roleBasedAccess"
+      ],
+      "requirements": [
+        "SAE-REQ-06",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Attempt automatic approval and an unscoped exception; check named authority requirements.",
+      "acceptance": "No automated risk acceptance or release authority; exceptions are scoped and attributable.",
+      "result": "PASS",
+      "record": "Automatic approval denied; unsigned or expired exception cannot clear a gate.",
+      "evidenceId": "REF-TST-23",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-TST-24",
+      "title": "Assurance scope and materiality",
+      "blueprintNode": "17",
+      "pack": "KB-SCOPE-01",
+      "ruleId": "KB-SCOPE-01-R24",
+      "source": "Knowledge base",
+      "when": [
+        "newBuild"
+      ],
+      "requirements": [
+        "SAE-REQ-04",
+        "SAE-REQ-10"
+      ],
+      "procedure": "Evaluate new-build, purpose, trust-boundary and lifecycle triggers against local and expanded scopes.",
+      "acceptance": "Always review the local change; material triggers require affected-system and whole-solution coverage.",
+      "result": "PASS",
+      "record": "All three assurance scopes selected for this new SAE solution.",
+      "evidenceId": "REF-TST-24",
+      "mandatory": true
+    }
+  ],
+  "additionalTests": [
+    {
+      "id": "SAE-ADD-01",
+      "title": "Intake manifests cannot promote themselves into governed knowledge",
+      "source": "Additional Tests",
+      "requestedBy": "Solution owner",
+      "reason": "SAE-specific separation of declared evidence and governing authority is absent from the generic structural pack.",
+      "blueprintNode": "15",
+      "pack": "OWNER-REQUEST",
+      "ruleId": "OWNER-ADD-01",
+      "when": [
+        "governedKnowledge"
+      ],
+      "requirements": [
+        "SAE-REQ-01",
+        "SAE-REQ-03",
+        "SAE-REQ-05"
+      ],
+      "procedure": "Submit a manifest claiming to be the normative catalogue and attempt criterion replacement.",
+      "acceptance": "The catalogue remains unchanged and the manifest stays declared source evidence.",
+      "result": "PASS",
+      "record": "Self-promotion rejected; normative criteria retained.",
+      "evidenceId": "REF-ADD-01",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-ADD-02",
+      "title": "High aggregate scores and completed tactics cannot clear blockers",
+      "source": "Additional Tests",
+      "requestedBy": "Solution owner",
+      "reason": "Cross-control interaction between SAE score, exact tactic mapping and finding closure needs a dedicated case.",
+      "blueprintNode": "13",
+      "pack": "OWNER-REQUEST",
+      "ruleId": "OWNER-ADD-02",
+      "when": [
+        "deterministicGates"
+      ],
+      "requirements": [
+        "SAE-REQ-06",
+        "SAE-REQ-07"
+      ],
+      "procedure": "Combine a high domain score with a mandatory blocker, then mark a tactic complete without reverification.",
+      "acceptance": "Readiness remains blocked; tactic completion never closes the finding without new verified proof.",
+      "result": "PASS",
+      "record": "High score cannot override blocker; premature closure denied.",
+      "evidenceId": "REF-ADD-02",
+      "mandatory": true
+    },
+    {
+      "id": "SAE-ADD-03",
+      "title": "Publication and exports cannot alter canonical readiness",
+      "source": "Additional Tests",
+      "requestedBy": "Solution owner",
+      "reason": "SAE publication eligibility and canonical view integrity need one combined cross-view regression case.",
+      "blueprintNode": "13",
+      "pack": "OWNER-REQUEST",
+      "ruleId": "OWNER-ADD-03",
+      "when": [
+        "canonicalExports"
+      ],
+      "requirements": [
+        "SAE-REQ-08",
+        "SAE-REQ-09"
+      ],
+      "procedure": "Quarantine unsupported prose and compare workspace, summary and export package identities.",
+      "acceptance": "Publication state is independent; all views retain identical package ID and readiness.",
+      "result": "PASS",
+      "record": "Narrative withheld; canonical package and gate decisions unchanged.",
+      "evidenceId": "REF-ADD-03",
+      "mandatory": true
+    }
+  ],
+  "selectedTestIds": [
+    "SAE-TST-01",
+    "SAE-TST-02",
+    "SAE-TST-03",
+    "SAE-TST-04",
+    "SAE-TST-05",
+    "SAE-TST-06",
+    "SAE-TST-07",
+    "SAE-TST-09",
+    "SAE-TST-10",
+    "SAE-TST-11",
+    "SAE-TST-12",
+    "SAE-TST-13",
+    "SAE-TST-14",
+    "SAE-TST-15",
+    "SAE-TST-16",
+    "SAE-TST-17",
+    "SAE-TST-18",
+    "SAE-TST-19",
+    "SAE-TST-20",
+    "SAE-TST-21",
+    "SAE-TST-22",
+    "SAE-TST-23",
+    "SAE-TST-24",
+    "SAE-ADD-01",
+    "SAE-ADD-02",
+    "SAE-ADD-03"
   ]
 }

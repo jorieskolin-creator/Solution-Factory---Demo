@@ -25,7 +25,7 @@ export default function ApprovalPreview() {
     </div>
     <div className="pdf-page-viewport" ref={viewport} tabIndex={0} role="region" aria-label={`Approval PDF page ${page + 1}, ${record.title}. Scroll to read.`}>
       <div className="pdf-page-sheet" style={{ width: `${zoom * 100}%` }}>
-        <img src={`/documents/${record.file}`} alt={`Prepared Document of Approval, page ${page + 1}: ${record.title}. Full text is available in the downloadable PDF.`}/>
+        <img src={`/documents/${record.file}`} alt={`Document of Approval, page ${page + 1}: ${record.title}. Full text is available in the downloadable PDF.`}/>
       </div>
     </div>
   </section>;

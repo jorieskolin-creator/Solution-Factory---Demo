@@ -1,44 +1,101 @@
 {
   "scenarioId": "CSCF-SAE-NB-001",
-  "version": "1.0",
-  "inputSha256": "90c0e9dafa2ad58447b8434b8a09f7b323438ac0b47dfe71851d745a1f89c772",
-  "approvalSha256": "16d6cea04a9ab0b00ae39d4bd35624b9ce44eff50b1bb4c1ea0da4485b2285c9",
-  "previewSourceSha256": "16d6cea04a9ab0b00ae39d4bd35624b9ce44eff50b1bb4c1ea0da4485b2285c9",
+  "version": "1.1",
+  "inputSha256": "6f3f73815cae2d973dff6f240b52dcdc4c9529a646ab2610a85907d3b2bc6b1e",
+  "approvalSha256": "1fd4785e594c0caba0dd87d7ba3b6b0bb1317dd58adc26965026d8af90c8557f",
+  "approvalPageTitles": [
+    "Approval pending and registered intent",
+    "Intake and test selection",
+    "Structural and supply chain tests",
+    "Supply chain and source integrity continued",
+    "Behavioral and adversarial tests",
+    "Recovery privacy and dynamic security tests",
+    "Regression impact and semantic evidence tests",
+    "Evidence policy and authority tests",
+    "Assurance scope and additional tests",
+    "Implementation and verification contracts",
+    "Requirement traceability",
+    "Acceptance criteria and evidence records",
+    "Acceptance criteria continued",
+    "Completed activities and assurance scope",
+    "Human review and release decision"
+  ],
+  "previewSourceSha256": "1fd4785e594c0caba0dd87d7ba3b6b0bb1317dd58adc26965026d8af90c8557f",
   "approvalPages": [
     {
       "file": "approval-preview/page-1.webp",
-      "title": "Approval pending and input identity",
-      "sha256": "fcd32362e708fcd3145439eb57f9bfe200acc423b491bde2ec646d8b26c87f79"
+      "title": "Approval pending and registered intent",
+      "sha256": "bd305f28fd40e8cc33c89328356aa8a0842060cf33d3137018cb41464ba22936"
     },
     {
       "file": "approval-preview/page-2.webp",
-      "title": "Implementation and verification contracts",
-      "sha256": "3646a4d88ad46baddae75f51a5e6a7bce909b031ae0fc03296ad5254ee89aedf"
+      "title": "Intake and test selection",
+      "sha256": "77e4d626b6b9fbc01e6e484340ea5f448d063ca222ccd7b23bd284fb801b7820"
     },
     {
       "file": "approval-preview/page-3.webp",
-      "title": "Requirement traceability",
-      "sha256": "c5ce44d539834cc6f5802f89163bafdfa58df644ded5a4ed5dd42fa6dd03f7bd"
+      "title": "Structural and supply chain tests",
+      "sha256": "dc93176d82e039f0a8ffb88fff8f518dec3ff2d917e25796188c6715beafa099"
     },
     {
       "file": "approval-preview/page-4.webp",
-      "title": "Acceptance criteria and evidence records",
-      "sha256": "77b459be2a6fee61ede1f71e347343178c6f446f0650187299e97d7e915fd614"
+      "title": "Supply chain and source integrity continued",
+      "sha256": "6b88c70199a25820079453be2e27a6ec70bc98944c062172a2928410107d691f"
     },
     {
       "file": "approval-preview/page-5.webp",
-      "title": "Acceptance criteria continued",
-      "sha256": "55aec5ea14e2b1448c20741737e8c315102b4ee0fbfe6ed0117bd856e1217dee"
+      "title": "Behavioral and adversarial tests",
+      "sha256": "98e6a54334864b0f8a75d228104f90ec7e2746d643af5299eece5adbf8236a10"
     },
     {
       "file": "approval-preview/page-6.webp",
-      "title": "Completed workflow and assurance scope",
-      "sha256": "918475b0897556fd0a90660b4cbbb6964c5cbcd3368de5b349f83f73a35a7b2b"
+      "title": "Recovery privacy and dynamic security tests",
+      "sha256": "92555e4651d0767e8ba68549b5d0e0407d796e4ddee82d2df0c68e8b7c9ae174"
     },
     {
       "file": "approval-preview/page-7.webp",
+      "title": "Regression impact and semantic evidence tests",
+      "sha256": "e5872a3a22a13f9c199128b2fdf5a858e5825dee4ae5485c8d09488e12ea8ddf"
+    },
+    {
+      "file": "approval-preview/page-8.webp",
+      "title": "Evidence policy and authority tests",
+      "sha256": "84b0d95bc63f55f59b0da11c4d9ad6935c8d24168eff8ebf662be1dfa970ec39"
+    },
+    {
+      "file": "approval-preview/page-9.webp",
+      "title": "Assurance scope and additional tests",
+      "sha256": "35514fa810bfb1b53857d68afeb542858407e48117ec2c5fb7975c3977706b43"
+    },
+    {
+      "file": "approval-preview/page-10.webp",
+      "title": "Implementation and verification contracts",
+      "sha256": "57ff03417ce77d34e59789a7ec355e210def19e98a3f422ba7c26eb269205f10"
+    },
+    {
+      "file": "approval-preview/page-11.webp",
+      "title": "Requirement traceability",
+      "sha256": "7432c6d7e61b89af74551e0e9fb5b20fa5360dc8e0fc2ebe1e4ca606e29dca71"
+    },
+    {
+      "file": "approval-preview/page-12.webp",
+      "title": "Acceptance criteria and evidence records",
+      "sha256": "e4b33262230e078f79f9ebc8e3fa10bba8f99f5bdd122dccf26230bc068cae41"
+    },
+    {
+      "file": "approval-preview/page-13.webp",
+      "title": "Acceptance criteria continued",
+      "sha256": "1c26486f22031f5b5c16b606ea49c96f08f00bc8f685264b65f240c05f24a393"
+    },
+    {
+      "file": "approval-preview/page-14.webp",
+      "title": "Completed activities and assurance scope",
+      "sha256": "b32afad417cc1a102d5e603813f9ece9412b312fcae2d9892584c441c2d5b067"
+    },
+    {
+      "file": "approval-preview/page-15.webp",
       "title": "Human review and release decision",
-      "sha256": "a22ea8002f6013bc3fc42168dc0024d6c9dc2e0b0327e065fce98d87c8fe556d"
+      "sha256": "536708b6890b6c5f57b330db6723b25a7aae6f8ea6baf4573dcd4268f49061b6"
     }
   ]
 }

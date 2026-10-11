@@ -70,7 +70,7 @@ doc.styles['Heading 1'].paragraph_format.space_before = Pt(13)
 doc.styles['Heading 2'].font.size = Pt(12.5)
 doc.styles['Heading 2'].paragraph_format.space_before = Pt(10)
 doc.core_properties.title = 'Solution Assurance Engine CSCF New Build Brief'
-doc.core_properties.subject = 'CSCF-SAE-NB-001 version 1.0'
+doc.core_properties.subject = f'{S["id"]} version {S["version"]}'
 doc.core_properties.author = 'CSCF'
 doc.core_properties.keywords = 'CSCF, Solution Assurance Engine, New Build, requirements'
 footer = section.footer.paragraphs[0]
@@ -131,6 +131,15 @@ doc.add_heading('Scope and exclusions', 1)
 para('Scope includes safe source intake, confirmed case understanding, the A-F instrument, independent verification, deterministic readiness, grounded tactics, controlled publication and canonical outputs. Autonomous legal conclusions, residual-risk acceptance, production approval and automatic finding closure are excluded.')
 
 doc.add_page_break()
+doc.add_heading('Register change intent and entry mode', 1)
+para('Blueprint Step 01 intake establishes the declared request before classification, contract creation or execution. The proposed new solution starts with a target-state hypothesis; unknowns remain visible until the accountable owner resolves them.')
+fields = [('changeIdentity','Change identity'),('entryMode','Entry mode'),('triggerType','Demand or trigger'),('targetSystem','Target solution'),('accountableOwner','Accountable owner'),('priority','Priority'),('deliveryContext','Delivery context')]
+table(['Intake field','Declared value'], [(label,S['intake'][key]) for key,label in fields],[1.6,5.1])
+for key,title in [('demand','User demand'),('targetStateHypothesis','Target state hypothesis'),('declaredFacts','Declared facts'),('unknowns','Unresolved information')]:
+    doc.add_heading(title,2); para(S['intake'][key])
+para('Registration checks: mandatory fields and types, identity and timestamp assignment, ownership validation, duplicate checks and initial scope classification. Missing identifiable purpose or target prevents creation of an executable contract.')
+
+doc.add_page_break()
 doc.add_heading('Proposed architecture and boundaries', 1)
 for title, text in ARCHITECTURE:
     doc.add_heading(title, 2); para(text)
@@ -138,7 +147,7 @@ doc.add_heading('Governance domains', 1)
 table(['Domain', 'Assessment coverage'], [(d['id'], d['name'].replace('&', 'and')) for d in S['domains']], [.7, 6])
 doc.add_heading('Dependencies and operating assumptions', 1)
 para('The real Engine depends on approved source parsers, versioned knowledge collections, identity and access controls, an evidence store, a configured reasoning-adapter registry and operational monitoring. Missing evidence remains UNKNOWN. Raw source bytes and image pixels stay outside provider packets; credentials must never enter audit exports.')
-para('The CSCF demonstration uses prepared deliverables and results without executing the future Engine or invoking AI. Its acceptance by document fingerprint is a demo entry rule, not a proposed real-world intake policy.')
+para('The build intake must preserve declared facts and unknowns. Executable contracts require confirmed purpose, target boundary and accountable ownership. Evidence remains distinct from governing knowledge and approval authority.')
 
 groups = [S['requirements'][:3], S['requirements'][3:6], S['requirements'][6:]]
 for group in groups:
@@ -151,6 +160,32 @@ for group in groups:
         p = doc.add_paragraph(); p.add_run('Acceptance criterion  ').bold = True; p.add_run(req['acceptance'])
         p = doc.add_paragraph(); p.add_run(f'{req["testId"]}  ').bold = True; p.add_run(req['test'])
         p = doc.add_paragraph(); p.add_run('Required deliverable  ').bold = True; p.add_run(req['deliverable'])
+
+doc.add_page_break()
+doc.add_heading('Test selection from intake and governed knowledge', 1)
+para(S['testSelection']['method'])
+para('The proposed rule snapshot is ' + S['testSelection']['knowledgeSnapshot'] + '. Rules must be governed and independently approved before activation in an implementation. A cognitive model may propose tests or gaps; it cannot remove mandatory checks, infer successful execution or clear blockers.')
+table(['Rule pack','Blueprint','Selection basis'],[(p['id'],p['nodes'],p['name']) for p in S['testSelection']['packs']],[1.45,.8,4.45])
+doc.add_heading('Required verification scope',2)
+para('The registered facts activate 23 knowledge-pack tests and three Additional Tests, producing 26 applicable tests. SAE-TST-08 is recorded as NOT_APPLICABLE because no container target is confirmed. A later container decision reopens classification and makes the image check mandatory.')
+para('Structural checks include build, types, lint, schemas, authorized paths, SAST, SCA, secrets, configuration, dependency policy, SBOM and artifact integrity. Behavioral checks include unit, integration, API, end-to-end, negative and adversarial cases, authentication, authorization, recovery, privacy, accessibility, dynamic security and regression. Differential comparison is required; mutation testing is not mandated by this baseline.')
+para('Impact review covers candidate changes, dependencies, data flows, permissions and trust boundaries. Evidence checks cover exact citations, revisions, contradictions and finding lock. Policy traces connect source authority to enforced controls, tests, findings and gates. A new solution with changed purpose and trust boundaries requires local, affected-system and whole-solution assurance.')
+doc.add_heading('Verification evidence and release rules',2)
+para('Record the assessed candidate revision, runner and configuration versions, check identity, actual result, evidence locator, independence limitations and uncovered criteria. Missing execution or decision-critical evidence stays UNKNOWN; documentation alone cannot satisfy a control.')
+para(S['testSelection']['gatePolicy'])
+
+doc.add_page_break()
+doc.add_heading('Additional Tests (if not included to KB)',1)
+para('These owner-requested tests supplement the governed catalogue. They must enter the Verification Contract with an accountable requester, requirement links, measurable pass condition and retained result. They do not replace mandatory knowledge-pack checks.')
+for test in S['additionalTests']:
+    doc.add_heading(test['id'] + ' ' + test['title'],2)
+    para('Requested by: ' + test['requestedBy'] + '. ' + test['reason'])
+    para('Requirements: ' + ', '.join(test['requirements']) + '. Blueprint Step ' + test['blueprintNode'] + '.')
+    para('Procedure: ' + test['procedure'])
+    para('Acceptance criterion: ' + test['acceptance'])
+doc.add_heading('Owner confirmation and required output',2)
+para(S['intake']['stakeholderAuthority'])
+para(S['intake']['expectedOutcome'])
 
 doc.add_page_break()
 doc.add_heading('Contracts and delivery conditions', 1)
@@ -186,57 +221,111 @@ def pdf_table(headers, rows, widths):
     t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#203d4a')),('ROWBACKGROUNDS',(0,1),(-1,-1),[colors.white,colors.HexColor('#f1f6f4')]),('GRID',(0,0),(-1,-1),.4,colors.HexColor('#d9e3e1')),('VALIGN',(0,0),(-1,-1),'MIDDLE'),('TOPPADDING',(0,0),(-1,-1),9),('BOTTOMPADDING',(0,0),(-1,-1),9),('LEFTPADDING',(0,0),(-1,-1),9),('RIGHTPADDING',(0,0),(-1,-1),9)]))
     story.extend([t, Spacer(1, 14)])
 W = A4[0] - 88
+page_titles = ['Approval pending and registered intent']
+def next_page(title):
+    page_titles.append(title)
+    story.append(PageBreak())
+    add(title, 'ReportHeading')
+
 add('Solution Assurance Engine', 'ReportTitle')
 add('Document of Approval', 'ReportHeading')
 add('Approval pending', 'ReportSub')
-add('The prepared CSCF scenario has reached the release gate. Its ten acceptance requirements are linked to candidate deliverables and simulated verification records. This package supports review; formal approval, residual-risk acceptance and deployment have not occurred.')
-pdf_table(['Package field','Fixed scenario record'], [('Input baseline', f'{S["id"]} | version {S["version"]}'),('Scenario date', S['date']),('Document of Approval', 'CSCF-SAE-DOA-001 | version 1.0'),('Verification result','10 of 10 prepared scenarios marked PASS - SIMULATED'),('Release status','Ready for demo approval review; formal authorization pending'),('Operational evidence','Not collected; operating effectiveness remains unobserved')], [135,W-135])
+add('Review the registered intent, requirement traces, selected tests and verification conclusions before authorizing release. Purpose, risk acceptance and deployment require named human authority. The test register retains applicability reasons and exclusions alongside its results.')
+pdf_table(['Package field','Reference case record'], [
+ ('Input baseline', f'{S["id"]} | version {S["version"]}'),
+ ('Approval document', f'CSCF-SAE-DOA-001 | version {S["version"]}'),
+ ('Candidate and knowledge snapshot', S['candidateId'] + ' | ' + S['testSelection']['knowledgeSnapshot']),
+ ('Date', S['date']),('Test register','26 applicable tests: 23 from rule packs and 3 owner requests; 1 explicit exclusion'),
+ ('Release status','APPROVAL PENDING'),('Accountable owner', S['intake']['accountableOwner'])], [142,W-142])
 add('Declared purpose', 'ReportSub'); add(S['purpose'])
-add('Input document identity', 'ReportSub'); add(S['inputFile'], 'SmallCopy'); add(f'SHA-256: {input_hash}', 'SmallCopy')
-add('Evidence boundary', 'ReportSub'); add('This report is the same prepared document in every demonstration. No code generation, scanners, model calls or real assurance assessment were executed to obtain these records. Scenario results must not be used as evidence about the existing SAE implementation.')
-story.append(PageBreak())
-add('Implementation and verification contracts', 'ReportHeading')
-for title, text in DELIVERY[:3]: add(title,'ReportSub'); add(text)
-add('Prepared security and integrity checks','ReportSub')
-pdf_table(['Check family','Scenario verification','Result'], [('Build and dependencies','Candidate structure and dependency policy fixture','PASS - SIMULATED'),('Secrets and raw source boundary','No secrets or raw files in prepared packet fixture','PASS - SIMULATED'),('Access and authorization','Unauthorized access and automated approval denial','PASS - SIMULATED'),('Traceability and evidence integrity','Requirement, citation and package-reference checks','PASS - SIMULATED')], [120,W-225,105])
-add('Verification independence','ReportSub'); add('The scenario presents separately defined implementation and verification contracts. All acceptance tests include a boundary or negative case. The report records this intended control pattern without claiming that an independent real review occurred.')
-story.append(PageBreak())
-add('Requirement traceability','ReportHeading')
-add('The original requirement identity is preserved throughout candidate work, verification and the release conclusion. Full acceptance criteria follow this matrix.')
+add('Demand and target state', 'ReportSub'); add(S['intake']['demand']); add(S['intake']['targetStateHypothesis'])
+add('Evidence basis', 'ReportSub'); add(S['recordBasis'], 'SmallCopy')
+add('Accepted input', 'ReportSub'); add(S['inputFile'], 'SmallCopy'); add(f'SHA-256: {input_hash}', 'SmallCopy')
+
+next_page('Intake and test selection')
+pdf_table(['Registered intake field','Declared value'],[(label,S['intake'][key]) for key,label in [('entryMode','Entry mode'),('triggerType','Trigger'),('priority','Priority'),('deliveryContext','Delivery context'),('expectedOutcome','Expected outcome'),('declaredFacts','Facts'),('unknowns','Unresolved information')]], [120,W-120])
+add('Selection from governed rules', 'ReportSub'); add(S['testSelection']['method'])
+pdf_table(['Pack','Blueprint','Activated coverage'],[(p['id'],p['nodes'],p['name']) for p in S['testSelection']['packs']], [100,60,W-160])
+add('Independent review and gate rules', 'ReportSub'); add(S['testSelection']['gatePolicy'], 'SmallCopy')
+
+def test_page(title, records):
+    next_page(title)
+    add('Results are attached to ' + S['candidateId'] + ' and the input baseline. Requirement references, selection rules and expected behavior are retained for every case.', 'SmallCopy')
+    for test in records:
+        trigger=', '.join(test['when'])
+        block=[pp(test['id'] + ' ' + test['title'], 'ReportSub'),
+          pp('Blueprint ' + test['blueprintNode'] + ' | ' + test['ruleId'] + ' | ' + test['result'] + ' | ' + test['evidenceId'], 'SmallCopy'),
+          pp('Selected by: ' + trigger + '. Requirements: ' + ', '.join(test['requirements']) + '.', 'SmallCopy'),
+          pp('Check: ' + test['procedure']),
+          pp('Pass condition: ' + test['acceptance']),
+          pp('Result record: ' + test['record']),
+          pp('Release conclusion: ' + ('Excluded for this baseline; reselect if the target changes.' if test['result']=='NOT_APPLICABLE' else 'Requirement proof satisfied within the reference case; human release approval pending.'), 'SmallCopy')]
+        story.append(KeepTogether(block))
+
+catalog=S['testCatalog']
+test_page('Structural and supply chain tests',catalog[:4])
+test_page('Supply chain and source integrity continued',catalog[4:8])
+test_page('Behavioral and adversarial tests',catalog[8:12])
+test_page('Recovery privacy and dynamic security tests',catalog[12:16])
+test_page('Regression impact and semantic evidence tests',catalog[16:20])
+test_page('Evidence policy and authority tests',catalog[20:23])
+test_page('Assurance scope and additional tests',[catalog[23]]+S['additionalTests'])
+add('Additional test origin', 'SmallCopy'); add('SAE-ADD-01 through 03 were requested by the solution owner because the generic rule packs do not cover these SAE-specific cross-control interactions. Their procedures and pass conditions repeat the input brief.', 'SmallCopy')
+
+next_page('Implementation and verification contracts')
+for title,text in DELIVERY:
+    add(title,'ReportSub'); add(text)
+add('Verification Contract scope','ReportSub')
+add('The contract binds the 26 applicable test identities and one explicit applicability exclusion to the ten original acceptance scenarios. It records independent verification, negative cases, exact requirement IDs and the mandatory blocker rules. Container selection or other material scope changes reopen impact, applicability and both contracts.')
+add('Execution evidence required for authorization','ReportSub')
+add('A production candidate requires version-linked runner output, configuration and scanner versions, artifact hashes, evidence locators, independent reviewer records and resolved coverage gaps. No mandatory UNKNOWN can be promoted to PASS. The reference case is not a production candidate release authorization.')
+add('Information boundaries and security','ReportSub')
+add('Source files remain local to acquisition. Approved summaries and confirmed intake define the reasoning boundary. Access controls protect intake, findings and approval actions. Credential exclusion, dependencies, provenance and publication checks map to the explicit test register.')
+
+next_page('Requirement traceability')
+add('Input requirements retain their identity through deliverables, acceptance scenarios, additional test selection and release conclusions. The next pages reproduce the original acceptance criteria.')
 rows=[]
 for r in S['requirements']:
-    rows.append([r['id']+'\n'+r['title'],r['deliverable'],r['testId']+'\n'+r['test'],'PASS\nSIMULATED','Satisfied in scenario; approval pending'])
-pdf_table(['Input requirement','Implementation deliverable','Verification scenario','Result','Release conclusion'], rows, [90,112,151,65,W-418])
-story.append(PageBreak())
-add('Acceptance criteria and evidence records','ReportHeading')
-add('These criteria reproduce the input baseline. PASS means the prepared demonstration record satisfies its scripted criterion; it does not attest to real implementation or production effectiveness.')
-for index, r in enumerate(S['requirements']):
-    if index == 5:
-        story.append(PageBreak())
-        add('Acceptance criteria continued', 'ReportHeading')
-    block=[pp(f'{r["id"]} {r["title"]}','ReportSub'),pp(r['acceptance']),pp(f'{r["testId"]} | {r["evidence"]} | PASS - SIMULATED','SmallCopy'),Spacer(1,6)]
-    story.append(KeepTogether(block))
-story.append(PageBreak())
-add('Completed workflow and assurance scope','ReportHeading')
-pdf_table(['CSCF stage','Blueprint nodes','Prepared completion record'],[(f'{s["id"]:02d} {s["name"]}',s['nodes'],'; '.join(t['title'] for t in s['tasks'])) for s in S['stages']], [145,65,W-210])
-add('Assurance scope','ReportSub'); add('The prepared route covers the local change, affected source and provider boundaries, and whole-solution purpose and governance. Domains A-F are reviewed against all ten build requirements. This is assurance of the proposed SAE build scenario, not a live SAE assessment of another solution.')
-add('Remediation and evidence ceilings','ReportSub'); add('No unresolved defect remains in the scripted verification route. Tests do not establish operating effectiveness. Future observations, policy changes or new evidence can reopen findings and require reassessment. Tactic completion alone never authorizes closure.')
-story.append(PageBreak())
-add('Human review and release decision','ReportHeading')
-add('Approval pending','ReportSub'); add('A real release would require the named authorities to review the exact assessed candidate, its evidence, accepted exceptions, target environment and rollback conditions. The demo does not appoint approvers, record a signature, accept residual risk or deploy a solution.')
-pdf_table(['Decision boundary','Required real-world review','Current scenario status'], [('Purpose and acceptance','Product or domain owner','Prepared owner decision only'),('Security and privacy','Named security/privacy authority as applicable','Simulated checks; no real sign-off'),('Residual risk','Authorized risk evaluator and accountable owner','NOT_DETERMINED'),('Production release','Named release approver','APPROVAL PENDING'),('Operational effectiveness','Version-linked monitoring and reassessment','UNOBSERVED')], [130,W-235,105])
-add('Demo closing actions','ReportSub'); add('Approve & Deploy and Save & Continue Later both close the view and display DEMO ENDED. Neither action changes this PDF, saves a case, grants real approval or triggers deployment.')
-add('Reference and compatibility notes','ReportSub')
-for note in SOURCE_NOTES: add(note,'SmallCopy')
-add('The supplied documents describe intended architecture. Production schemas, legal applicability, provider controls and operational thresholds require their own validated design and evidence before a real build is authorized.','SmallCopy')
+    rows.append([r['id']+'\n'+r['title'],r['deliverable'],r['testId']+'\n'+r['test'],'PASS','Reference case satisfied; approval pending'])
+pdf_table(['Input requirement','Implementation deliverable','Verification scenario','Result','Release conclusion'],rows,[90,112,151,45,W-398])
 
-def footer(canvas, pdfdoc):
+next_page('Acceptance criteria and evidence records')
+add('These criteria repeat the accepted input baseline. The test register above supplies structural, behavioral, impact, evidence and policy coverage in addition to the original acceptance scenarios.', 'SmallCopy')
+for index,r in enumerate(S['requirements']):
+    if index==5: next_page('Acceptance criteria continued')
+    related=[x['id'] for x in S['testCatalog']+S['additionalTests'] if r['id'] in x['requirements'] and x['id'] in S['selectedTestIds']]
+    story.append(KeepTogether([pp(r['id']+' '+r['title'],'ReportSub'),pp(r['acceptance']),pp(r['testId']+' | '+r['evidence']+' | PASS','SmallCopy'),pp('Selected tests: '+', '.join(related),'SmallCopy'),Spacer(1,4)]))
+
+next_page('Completed activities and assurance scope')
+pdf_table(['CSCF stage','Blueprint','Completion record'],[(f'{s["id"]:02d} {s["name"]}',s['nodes'],'; '.join(x['title'] for x in s['tasks'])) for s in S['stages']],[145,55,W-200])
+add('Scope selection','ReportSub')
+pdf_table(['Scope','Trigger and coverage','Conclusion'],[
+ ('Local change','Required for every change; all ten requirements and direct controls.','SELECTED'),
+ ('Affected system','Evidence intake, provider packets, identities, dependencies and canonical views touch trust boundaries.','SELECTED'),
+ ('Whole solution','New solution, target purpose, bounded reasoning and lifecycle authority activate A-F assurance.','SELECTED')],[100,W-180,80])
+add('Coverage and limitations','ReportSub'); add('All 180 primary work items are accounted for by SAE-TST-17. Operating effectiveness is UNOBSERVED until version-linked operational evidence exists. Mutation testing is not mandated; the unconfirmed container target is an explicit applicability exclusion. New evidence or changed boundaries can reopen findings and the assurance scope.','SmallCopy')
+
+next_page('Human review and release decision')
+add('Approval pending','ReportSub')
+add('Review the exact candidate, execution evidence, accepted exceptions, target environment and rollback conditions before authorization. The reference package preserves the release decision for named human authorities.')
+pdf_table(['Decision boundary','Required authority or evidence','Status'],[
+ ('Purpose and scope','Accountable solution owner; confirmed intake and accepted criteria.','REVIEW REQUIRED'),
+ ('Security and privacy','Named security and privacy authority; attributable enforced-control proof.','REVIEW REQUIRED'),
+ ('Risk acceptance','Authorized evaluator and accountable owner.','NOT_DETERMINED'),
+ ('Production release','Named release approver; assessed revision and target environment.','APPROVAL PENDING'),
+ ('Operating effectiveness','Version-linked observations and reassessment.','UNOBSERVED')],[110,W-215,105])
+add('Open decisions','ReportSub')
+for decision in DECISIONS: add(decision,'SmallCopy')
+add('Reference basis','ReportSub')
+for note in SOURCE_NOTES: add(note,'SmallCopy')
+
+def footer(canvas,pdfdoc):
     canvas.saveState(); canvas.setFont('Body',7.5); canvas.setFillColor(colors.HexColor('#80979f'))
-    canvas.drawString(44,27,'CSCF-SAE-DOA-001 | v1.0 | Prepared demo evidence | Approval pending')
+    canvas.drawString(44,27,f'CSCF-SAE-DOA-001 | v{S["version"]} | Reference verification record | Approval pending')
     canvas.drawRightString(A4[0]-44,27,str(pdfdoc.page)); canvas.restoreState()
 
 approval_path = OUT / S['approvalFile']
 SimpleDocTemplate(str(approval_path),pagesize=A4,rightMargin=44,leftMargin=44,topMargin=45,bottomMargin=48,title='Solution Assurance Engine Document of Approval',author='CSCF',pageCompression=1).build(story,onFirstPage=footer,onLaterPages=footer)
-manifest = {'scenarioId':S['id'],'version':S['version'],'inputSha256':input_hash,'approvalSha256':hashlib.sha256(approval_path.read_bytes()).hexdigest()}
+manifest = {'scenarioId':S['id'],'version':S['version'],'inputSha256':input_hash,'approvalSha256':hashlib.sha256(approval_path.read_bytes()).hexdigest(), 'approvalPageTitles':page_titles}
 (ROOT/'src/asset-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({'input':str(input_path),'approval':str(approval_path),'manifest':manifest},indent=2))
