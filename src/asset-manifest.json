@@ -2,5 +2,43 @@
   "scenarioId": "CSCF-SAE-NB-001",
   "version": "1.0",
   "inputSha256": "90c0e9dafa2ad58447b8434b8a09f7b323438ac0b47dfe71851d745a1f89c772",
-  "approvalSha256": "16d6cea04a9ab0b00ae39d4bd35624b9ce44eff50b1bb4c1ea0da4485b2285c9"
+  "approvalSha256": "16d6cea04a9ab0b00ae39d4bd35624b9ce44eff50b1bb4c1ea0da4485b2285c9",
+  "previewSourceSha256": "16d6cea04a9ab0b00ae39d4bd35624b9ce44eff50b1bb4c1ea0da4485b2285c9",
+  "approvalPages": [
+    {
+      "file": "approval-preview/page-1.webp",
+      "title": "Approval pending and input identity",
+      "sha256": "fcd32362e708fcd3145439eb57f9bfe200acc423b491bde2ec646d8b26c87f79"
+    },
+    {
+      "file": "approval-preview/page-2.webp",
+      "title": "Implementation and verification contracts",
+      "sha256": "3646a4d88ad46baddae75f51a5e6a7bce909b031ae0fc03296ad5254ee89aedf"
+    },
+    {
+      "file": "approval-preview/page-3.webp",
+      "title": "Requirement traceability",
+      "sha256": "c5ce44d539834cc6f5802f89163bafdfa58df644ded5a4ed5dd42fa6dd03f7bd"
+    },
+    {
+      "file": "approval-preview/page-4.webp",
+      "title": "Acceptance criteria and evidence records",
+      "sha256": "77b459be2a6fee61ede1f71e347343178c6f446f0650187299e97d7e915fd614"
+    },
+    {
+      "file": "approval-preview/page-5.webp",
+      "title": "Acceptance criteria continued",
+      "sha256": "55aec5ea14e2b1448c20741737e8c315102b4ee0fbfe6ed0117bd856e1217dee"
+    },
+    {
+      "file": "approval-preview/page-6.webp",
+      "title": "Completed workflow and assurance scope",
+      "sha256": "918475b0897556fd0a90660b4cbbb6964c5cbcd3368de5b349f83f73a35a7b2b"
+    },
+    {
+      "file": "approval-preview/page-7.webp",
+      "title": "Human review and release decision",
+      "sha256": "a22ea8002f6013bc3fc42168dc0024d6c9dc2e0b0327e065fce98d87c8fe556d"
+    }
+  ]
 }

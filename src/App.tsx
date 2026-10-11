@@ -2,6 +2,7 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { Activity, ArrowDownToLine, ArrowRight, BookOpen, Check, ChevronRight, CircleCheck, Clock3, FileCheck2, FileText, Fingerprint, Layers3, LockKeyhole, Pause, Play, RotateCcw, ShieldCheck, Upload, X, XCircle } from 'lucide-react';
 import scenario from './scenario.json' with { type: 'json' };
 import manifest from './asset-manifest.json';
+import ApprovalPreview from './ApprovalPreview';
 import { acceptsInput, currentTask, formatTime, initialRun, runReducer, taskTimeline, TOTAL_SECONDS, WRONG_INPUT } from './engine';
 
 const inputURL = `/documents/${scenario.inputFile}`;
@@ -124,8 +125,8 @@ export default function App() {
     <dialog ref={reviewRef} className="approval-dialog" onCancel={event => { event.preventDefault(); setShowReport(false); reviewButton.current?.focus(); }} aria-labelledby="approval-title">
       <div className="approval-header"><div><div className="eyebrow">RELEASE GATE · HUMAN DECISION</div><h2 id="approval-title">Document of Approval</h2><p>Solution Assurance Engine · {scenario.id} · v1.0</p></div><button className="icon-button" aria-label="Close approval review" onClick={() => { setShowReport(false); reviewButton.current?.focus(); }}><X/></button></div>
       <div className="approval-summary"><span><CircleCheck size={18}/> Scenario verification complete</span><span><LockKeyhole size={18}/> Approval pending</span><a className="button secondary small" href={approvalURL} download><ArrowDownToLine size={16}/> Download approval PDF</a></div>
-      {run.mode === 'review' && <iframe title="Prepared Document of Approval PDF" src={`${approvalURL}#view=FitH`} />}
-      <div className="approval-fallback">PDF preview unavailable? <a href={approvalURL} target="_blank" rel="noreferrer">Open the approval document</a>. All results are simulated; operational effectiveness is unobserved.</div>
+      {run.mode === 'review' && <ApprovalPreview/>}
+      <div className="approval-fallback"><a href={approvalURL} target="_blank" rel="noreferrer">Open the full approval PDF</a>. All results are simulated; operational effectiveness is unobserved.</div>
       <div className="approval-actions"><p>Either choice ends this demonstration.</p><button className="button secondary" onClick={endDemo}>Save &amp; Continue Later</button><button className="button primary" onClick={endDemo}><Check size={17}/> Approve &amp; Deploy</button></div>
     </dialog>
   </div>;

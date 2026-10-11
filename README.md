@@ -19,6 +19,7 @@ Uploads are read in browser memory and checked using SHA-256 through the Web Cry
 - `src/scenario.json`: the shared purpose, ten requirements, measurable acceptance criteria, deliverables, verification scenarios and workflow descriptions.
 - `src/asset-manifest.json`: finalized document fingerprints and identity.
 - `scripts/create-documents.py`: deliberate authoring workflow. Creates the DOCX first, fingerprints it, then prepares its matching PDF and manifest. Regenerating changes the accepted bytes: distribute the new pair and rebuild together. This is never run during a demonstration or production build.
+- `scripts/create-preview.py`: prepares seven lossless page previews from the finalized PDF and binds their fingerprints to it. Run after deliberate document authoring with Poppler and Pillow installed. The application provides page navigation, zoom and scrolling without depending on a browser's embedded PDF viewer. The original PDF remains the downloaded asset.
 
 The future SAE specification includes bounded, governed AI capabilities. This demo simulates those activities with prepared descriptions and evidence. Its results do not establish assurance, compliance or operating effectiveness for an actual SAE implementation. Runtime elapsed times appear only in the application; the PDF contains fixed scenario records.
 

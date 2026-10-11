@@ -9,4 +9,10 @@ for (const [file, expected] of [[scenario.inputFile, manifest.inputSha256], [sce
 }
 assert.equal(manifest.scenarioId, scenario.id);
 assert.equal(manifest.version, scenario.version);
+assert.equal(manifest.previewSourceSha256, manifest.approvalSha256);
+assert.equal(manifest.approvalPages.length, 7);
+for (const page of manifest.approvalPages) {
+  const bytes = readFileSync(new URL(`../public/documents/${page.file}`, import.meta.url));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), page.sha256, `Approval preview ${page.file} changed.`);
+}
 console.log('Document fingerprints and scenario identity verified.');

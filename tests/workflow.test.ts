@@ -58,4 +58,10 @@ test('all tasks refer to defined requirements and the approval asset remains ide
   const report = readFileSync(new URL(`../public/documents/${scenario.approvalFile}`, import.meta.url));
   assert.equal(createHash('sha256').update(report).digest('hex'), manifest.approvalSha256);
   assert.equal(report.subarray(0, 5).toString(), '%PDF-');
+  assert.equal(manifest.previewSourceSha256, manifest.approvalSha256);
+  assert.equal(manifest.approvalPages.length, 7);
+  for (const page of manifest.approvalPages) {
+    const preview = readFileSync(new URL(`../public/documents/${page.file}`, import.meta.url));
+    assert.equal(createHash('sha256').update(preview).digest('hex'), page.sha256);
+  }
 });
