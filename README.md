@@ -14,8 +14,8 @@ Uploads are read in browser memory and checked using SHA-256 through the Web Cry
 
 ## Documents and scenario
 
-- `public/documents/SAE-CSCF-New-Build-Brief-v1.1.docx`: the single accepted input, **CSCF-SAE-NB-001**, version **1.1**.
-- `public/documents/SAE-Document-of-Approval-v1.1.pdf`: the fixed, seven-page approval package, marked **Approval pending** with **PASS — SIMULATED** records.
+- `public/documents/SAE-CSCF-New-Build-Brief-v1.2.docx`: the single accepted input, **CSCF-SAE-NB-001**, version **1.2**.
+- `public/documents/SAE-Document-of-Approval-v1.2.pdf`: the fixed, eighteen-page approval package, marked **Approval pending**, with prepared reference verification records.
 - `src/scenario.json`: the shared purpose, ten requirements, measurable acceptance criteria, deliverables, verification scenarios and workflow descriptions.
 - `src/asset-manifest.json`: finalized document fingerprints and identity.
 - `scripts/create-documents.py`: deliberate authoring workflow. Creates the DOCX first, fingerprints it, then prepares its matching PDF and manifest. Regenerating changes the accepted bytes: distribute the new pair and rebuild together. This is never run during a demonstration or production build.
@@ -25,7 +25,9 @@ The future SAE specification includes bounded, governed AI capabilities. This ap
 
 The original reference documents in this repository are preserved. Synced ChatGPT project sources were used as read-only references and are not packaged as editable application source.
 
-Version 1.1 expands Blueprint Step 01 intake and adds 24 rule-pack records, including one explicit applicability exclusion, plus three owner-requested Additional Tests. The application activates 26 tests from the confirmed facts. Both documents share these identities, conditions, requirement links and reference outcomes. **Download the version 1.1 brief again:** older accepted bytes no longer start a build.
+The intake includes 24 rule-pack records, including one explicit applicability exclusion, plus three owner-requested Additional Tests. The application activates 26 tests from the confirmed facts. Both documents share these identities, conditions, requirement links and reference outcomes.
+
+Version 1.2 adds the logical implementation scope, six protected architecture invariants, prohibited changes, canonical output obligations and five unresolved decision gates. The approval report answers these constraints and preserves execution prerequisites and operational uncertainty. The brief enables contract derivation; it is not itself an executable coding-agent contract. **Download the version 1.2 brief again:** older accepted bytes no longer start a build. The Download Input Document action supplies the accepted file, while New Build selects it for intake.
 
 ## Run locally
 

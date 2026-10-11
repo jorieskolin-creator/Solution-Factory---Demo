@@ -188,6 +188,28 @@ para(S['intake']['stakeholderAuthority'])
 para(S['intake']['expectedOutcome'])
 
 doc.add_page_break()
+doc.add_heading('Implementation contract derivation basis', 1)
+basis=S['contractBasis']
+para(basis['purpose']); para(basis['scope']); para(basis['components'])
+doc.add_heading('Protected architecture invariants',2)
+for index,boundary in enumerate(basis['boundaries']):
+    if index==3:
+        doc.add_page_break()
+        doc.add_heading('Architecture invariants and output obligations',1)
+    doc.add_heading(boundary['id']+' '+boundary['title'],2)
+    para(boundary['constraint'])
+    para('Requirements: '+', '.join(boundary['requirements'])+'. Verification: '+', '.join(boundary['tests'])+'.')
+
+doc.add_heading('Prohibited changes',2); para(basis['prohibited'])
+doc.add_heading('Required output contract',2); para(basis['output']); para(basis['schemaGate']); para(basis['implementationResult'])
+doc.add_page_break()
+doc.add_heading('Unresolved decisions and activation gates',1)
+para('Open intake information is permitted while understanding the request. It must not become an implicit permission or successful check. Each decision has a named role and a gate where it must be resolved.')
+for decision in basis['decisions']:
+    doc.add_heading(decision['id']+' '+decision['gate'],2)
+    para(decision['question']+' Owner: '+decision['owner']+'. '+decision['resolution'])
+
+doc.add_page_break()
 doc.add_heading('Contracts and delivery conditions', 1)
 for title, text in DELIVERY:
     doc.add_heading(title, 2); para(text)
@@ -272,6 +294,15 @@ test_page('Evidence policy and authority tests',catalog[20:23])
 test_page('Assurance scope and additional tests',[catalog[23]]+S['additionalTests'])
 add('Additional test origin', 'SmallCopy'); add('SAE-ADD-01 through 03 were requested by the solution owner because the generic rule packs do not cover these SAE-specific cross-control interactions. Their procedures and pass conditions repeat the input brief.', 'SmallCopy')
 
+next_page('Response to implementation boundaries')
+basis=S['contractBasis']
+add(basis['scope']); add('The logical component scope and repository allowlist obligations are retained from the input. Authorized candidate paths still require SAE-DEC-02 resolution before a real executor may run.', 'SmallCopy')
+for index,boundary in enumerate(basis['boundaries']):
+    if index==3: next_page('Implementation boundaries continued')
+    story.append(KeepTogether([pp(boundary['id']+' '+boundary['title'],'ReportSub'),pp(boundary['constraint']),pp('Requirement links: '+', '.join(boundary['requirements'])+'. Checks: '+', '.join(boundary['tests'])+'.','SmallCopy'),pp('Response: '+boundary['response'],'SmallCopy')]))
+add('Prohibited changes','ReportSub'); add(basis['prohibited'])
+add('Boundary conclusion','ReportSub'); add('The reference records address each invariant. Candidate-specific diffs, enforcement locators and independent runner outputs remain required for an actual execution and release decision. Prohibited changes and an incomplete contract cannot be cleared by these reference results.','SmallCopy')
+
 next_page('Implementation and verification contracts')
 for title,text in DELIVERY:
     add(title,'ReportSub'); add(text)
@@ -304,6 +335,14 @@ pdf_table(['Scope','Trigger and coverage','Conclusion'],[
  ('Affected system','Evidence intake, provider packets, identities, dependencies and canonical views touch trust boundaries.','SELECTED'),
  ('Whole solution','New solution, target purpose, bounded reasoning and lifecycle authority activate A-F assurance.','SELECTED')],[100,W-180,80])
 add('Coverage and limitations','ReportSub'); add('All 180 primary work items are accounted for by SAE-TST-17. Operating effectiveness is UNOBSERVED until version-linked operational evidence exists. Mutation testing is not mandated; the unconfirmed container target is an explicit applicability exclusion. New evidence or changed boundaries can reopen findings and the assurance scope.','SmallCopy')
+
+next_page('Output obligations and unresolved decisions')
+add('Canonical output response','ReportSub'); add(basis['output']); add(basis['schemaGate'], 'SmallCopy')
+add('Verification response: SAE-TST-02, SAE-TST-18 and SAE-ADD-03 cover schema integrity, authorized impact and identical canonical views. A complete approved schema and a repository-linked ImplementationResult are required deliverables, not attached production evidence.', 'SmallCopy')
+add('Decision questions from the intake','ReportSub')
+for decision in basis['decisions']:
+    story.append(KeepTogether([pp(decision['id']+' '+decision['gate'],'ReportSub'),pp(decision['question']),pp('Authority: '+decision['owner']+'. Status: OPEN. '+decision['resolution'],'SmallCopy')]))
+add('Answer to the new build starting question','ReportSub'); add(basis['releaseAnswer'])
 
 next_page('Human review and release decision')
 add('Approval pending','ReportSub')

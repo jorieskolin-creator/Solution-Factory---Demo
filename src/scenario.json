@@ -1,11 +1,11 @@
 {
   "id": "CSCF-SAE-NB-001",
-  "version": "1.1",
+  "version": "1.2",
   "solution": "Solution Assurance Engine",
   "date": "11 October 2026",
   "purpose": "Create evidence-gated readiness analysis for digital solutions by comparing declared purpose, documentation, implementation, tests and observed behaviour. Deterministic controls govern findings and progression; named humans retain formal decision authority.",
-  "inputFile": "SAE-CSCF-New-Build-Brief-v1.1.docx",
-  "approvalFile": "SAE-Document-of-Approval-v1.1.pdf",
+  "inputFile": "SAE-CSCF-New-Build-Brief-v1.2.docx",
+  "approvalFile": "SAE-Document-of-Approval-v1.2.pdf",
   "requirements": [
     {
       "id": "SAE-REQ-01",
@@ -154,7 +154,7 @@
       "tasks": [
         {
           "title": "Register the SAE build intent",
-          "detail": "Register demand, target solution, owner, purpose, expected outcome, priority, delivery context and target-state hypothesis from CSCF-SAE-NB-001 v1.1. Preserve declared facts and unknowns.",
+          "detail": "Register demand, target solution, owner, purpose, expected outcome, priority, delivery context and target-state hypothesis from CSCF-SAE-NB-001 v1.2. Preserve declared facts and unknowns.",
           "refs": [
             "SAE-REQ-02",
             "SAE-REQ-09"
@@ -251,7 +251,7 @@
       "tasks": [
         {
           "title": "Prepare the implementation contract",
-          "detail": "Bound deliverables to safe intake, governed knowledge, assessment, finding lock, readiness, actions and canonical outputs.",
+          "detail": "Bind permitted SAE components, six protected invariants and prohibited changes to the ten requirements. Derive the repository allowlist and candidate output contract.",
           "refs": [
             "SAE-REQ-01",
             "SAE-REQ-03",
@@ -261,7 +261,7 @@
         },
         {
           "title": "Derive independent verification",
-          "detail": "Freeze 26 applicable tests and one explicit exclusion alongside SAE-VER-01 through 10. Keep verification independent, with missing-evidence and negative cases.",
+          "detail": "Freeze 26 applicable tests, one justified exclusion, negative and regression cases, independent proof obligations and ReadinessPackageV2 schema checks.",
           "refs": [
             "SAE-REQ-05",
             "SAE-REQ-06",
@@ -271,7 +271,7 @@
         },
         {
           "title": "Check contract readiness",
-          "detail": "Confirm complete requirement coverage, protected authority boundaries and the scoped work packet.",
+          "detail": "Check contract scope, authority, schemas and tool permissions. Preserve SAE-DEC-01 to 05 as explicit activation or release prerequisites; missing execution-critical decisions block a real work packet.",
           "refs": [
             "SAE-REQ-08",
             "SAE-REQ-10"
@@ -436,7 +436,7 @@
       "tasks": [
         {
           "title": "Assemble the document of approval",
-          "detail": "Assemble the approval package with intake identity, requirement traces, selected tests, results, exclusions and release conditions. Stop for the named human decision.",
+          "detail": "Assemble requirement and invariant responses, selected tests, output obligations and open decision gates. Stop with approval pending and operating value unobserved.",
           "refs": [
             "SAE-REQ-06",
             "SAE-REQ-09",
@@ -1125,5 +1125,136 @@
     "SAE-ADD-01",
     "SAE-ADD-02",
     "SAE-ADD-03"
-  ]
+  ],
+  "contractBasis": {
+    "purpose": "This intake supplies the basis for two linked contracts. CSCF must derive, review and freeze the exact repository scope, schemas, tool permissions and independent proof obligations before a coding agent receives an executable work packet. The brief itself is not an authorization to execute.",
+    "scope": "Affected capability: the complete SAE readiness assessment path, from inert acquisition to human decision support. Current state: no accepted production implementation or repository baseline is supplied. This is a new build; an existing system must not be treated as implicitly authorized for modification.",
+    "components": "Permitted logical components are local acquisition and provenance; confirmation workspace; governed knowledge loader and A-F instrument; independent verification and finding ledger; deterministic gates and tactic mapping; bounded reasoning adapters; canonical package, publication and views. Their dependencies, interfaces and file paths must be enumerated in the derived contract against an identified repository revision.",
+    "boundaries": [
+      {
+        "id": "SAE-INV-01",
+        "title": "Evidence and knowledge separation",
+        "constraint": "Source documents are inert case evidence. They cannot execute instructions or replace approved criteria, rules or tactics. Invalid provenance or knowledge references prevent activation.",
+        "requirements": [
+          "SAE-REQ-01",
+          "SAE-REQ-03"
+        ],
+        "tests": [
+          "SAE-TST-07",
+          "SAE-ADD-01"
+        ],
+        "response": "REF-TST-07 and REF-ADD-01 record invalid-source rejection and denied catalogue self-promotion."
+      },
+      {
+        "id": "SAE-INV-02",
+        "title": "Confirmed intake and complete coverage",
+        "constraint": "Assessment requires an attributable immutable intake snapshot. All 180 work items must be accounted for; absent proof remains UNKNOWN and exclusions require a reason.",
+        "requirements": [
+          "SAE-REQ-02",
+          "SAE-REQ-04"
+        ],
+        "tests": [
+          "SAE-TST-10",
+          "SAE-TST-17"
+        ],
+        "response": "REF-TST-10 and REF-TST-17 record confirmation enforcement and complete coverage accounting."
+      },
+      {
+        "id": "SAE-INV-03",
+        "title": "Independent proof and finding lock",
+        "constraint": "The builder cannot edit its own success definition or approve its own findings. Unsupported or conflicting claims cannot lock; evidence states cannot exceed what their sources prove.",
+        "requirements": [
+          "SAE-REQ-05"
+        ],
+        "tests": [
+          "SAE-TST-20",
+          "SAE-TST-21"
+        ],
+        "response": "REF-TST-20 and REF-TST-21 record broken-citation rejection, evidence ceilings and withheld finding lock."
+      },
+      {
+        "id": "SAE-INV-04",
+        "title": "Deterministic decisions and exact tactics",
+        "constraint": "No score, generated narrative or completed tactic may bypass a mandatory blocker. Only exact eligible object IDs map tactics. Reverification is required before finding closure.",
+        "requirements": [
+          "SAE-REQ-06",
+          "SAE-REQ-07"
+        ],
+        "tests": [
+          "SAE-ADD-02"
+        ],
+        "response": "REF-ADD-02 and SAE-VER-07 record blocker preservation, exact mapping and denied premature closure."
+      },
+      {
+        "id": "SAE-INV-05",
+        "title": "One canonical result",
+        "constraint": "Workspace, summary and exports render one hashed ReadinessPackageV2. Views cannot recalculate readiness. Publication status cannot improve readiness or authorize deployment.",
+        "requirements": [
+          "SAE-REQ-08",
+          "SAE-REQ-09"
+        ],
+        "tests": [
+          "SAE-TST-02",
+          "SAE-ADD-03"
+        ],
+        "response": "REF-TST-02 and REF-ADD-03 record schema checks, identical package identity and unchanged readiness after publication quarantine."
+      },
+      {
+        "id": "SAE-INV-06",
+        "title": "Information boundaries and human authority",
+        "constraint": "Raw files, pixels and credentials cannot enter provider packets. Only approved summaries and confirmed intake may leave acquisition. Access changes, risk acceptance and release require scoped authority; the Engine cannot grant formal approval.",
+        "requirements": [
+          "SAE-REQ-10"
+        ],
+        "tests": [
+          "SAE-TST-12",
+          "SAE-TST-14",
+          "SAE-TST-23"
+        ],
+        "response": "REF-TST-12, REF-TST-14 and REF-TST-23 record denied access, packet boundary checks and refusal of automated approval."
+      }
+    ],
+    "prohibited": "Prohibited changes include altering these six invariants, modifying the protected Verification Contract, introducing undeclared network destinations or permissions, replacing governed criteria with intake content, changing interfaces outside the authorized scope, and enabling autonomous risk acceptance or deployment. A material scope delta returns to impact, applicability and contract review.",
+    "output": "The canonical output is ReadinessPackageV2, aligned to the supplied reference revision 2.6.0. Required content comprises solution identity, confirmed intake, source ingestion and evidence lineage, applicability, domain results and 180-item coverage, locked findings and unresolved claims, hard gates, grounded actions, cognitive ledgers, publication status, human decision requirements and run trace. One package hash binds every rendered view.",
+    "schemaGate": "The reference presentation does not supply a complete machine schema. Before execution, approve a versioned JSON Schema with required field names, types, enumerations, exact-ID references and hash rules; reject missing mandatory fields, dangling references and unknown schema versions. SAE-TST-02 must exercise those rejections. Do not let the coding agent invent an alternative canonical format.",
+    "implementationResult": "The coding-agent result must identify the invocation, starting revision, candidate revision, changed paths and interfaces, dependency and permission deltas, artifact hashes, requirement-to-deliverable links, build outputs and unresolved items. This is an implementation claim; the independent verifier supplies test execution records and findings.",
+    "decisions": [
+      {
+        "id": "SAE-DEC-01",
+        "question": "Who confirms purpose and holds contract and verification authority?",
+        "gate": "Before executable contract",
+        "owner": "Solution owner and independent assurance lead",
+        "resolution": "Named confirmations and independent verifier appointment required; not recorded."
+      },
+      {
+        "id": "SAE-DEC-02",
+        "question": "Which repository, components, interfaces, schemas and tools may the agent change?",
+        "gate": "Before executable contract",
+        "owner": "Architecture owner and contract authority",
+        "resolution": "Starting revision, file allowlist, interface scope, output schema and tool envelope must be frozen; not supplied."
+      },
+      {
+        "id": "SAE-DEC-03",
+        "question": "Which knowledge edition, policy authorities and test configurations govern this candidate?",
+        "gate": "Before assessment or verification activation",
+        "owner": "Knowledge steward and security or privacy authority",
+        "resolution": "Approve exact sources, clauses, catalogue, test runners and configurations. Proposed rule packs are not legal compliance evidence."
+      },
+      {
+        "id": "SAE-DEC-04",
+        "question": "Which provider routes, identities, storage, retention and deployment target are approved?",
+        "gate": "Before affected integration and production release",
+        "owner": "Security or privacy authority and service owner",
+        "resolution": "Real integrations remain disabled until approved. A stubbed adapter does not validate a provider or production environment."
+      },
+      {
+        "id": "SAE-DEC-05",
+        "question": "What operational value, service levels and recovery outcomes must later be observed?",
+        "gate": "Before production release and operational acceptance",
+        "owner": "Service owner and release authority",
+        "resolution": "Agree measurable targets, rollback and observations. Operational value remains UNOBSERVED; test success alone cannot prove it."
+      }
+    ],
+    "releaseAnswer": "Does the solution satisfy its intended purpose under the stated constraints? The reference case covers the ten functional acceptance requirements and six protected invariants. It does not establish production operating effectiveness, approved contract execution or legal compliance. Open decisions remain explicit prerequisites; approval is pending."
+  }
 }

@@ -29,4 +29,12 @@ test('every selected test and workflow reference retains intake and requirement 
   for (const stage of scenario.stages) for (const task of stage.tasks) for (const id of task.testRefs) assert.equal(testIds.has(id), true, id);
   for (const req of ids) assert.ok(tests.some(x => x.requirements.includes(req)), req);
   assert.deepEqual([...new Set(scenario.testCatalog.map(x => x.blueprintNode))].sort(), ['12','13','14','15','16','17']);
+  for (const boundary of scenario.contractBasis.boundaries) {
+    for (const req of boundary.requirements) assert.ok(ids.has(req), req);
+    for (const check of boundary.tests) {
+      assert.ok(scenario.selectedTestIds.includes(check), check);
+      assert.ok(tests.some(x => x.id === check && x.requirements.some(r => boundary.requirements.includes(r))), check);
+    }
+  }
+  assert.ok(scenario.contractBasis.decisions.some(x => x.gate === 'Before executable contract'));
 });
