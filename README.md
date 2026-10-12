@@ -4,7 +4,7 @@ A controlled reference workflow of the Continuous Solution Creation Flow. The fa
 
 ## Use the demonstration
 
-1. Select **Download Input Document**. Keep its contents unchanged; renaming the file is allowed.
+1. Use the version 1.2 New Build Brief supplied by the solution owner. Keep its contents unchanged; renaming the file is allowed.
 2. Add that DOCX with **New Build** on Line 1, then select **Start Build**.
 3. Follow eight stages and 21 tasks over 150 seconds. Pause or inspect reached stages whenever needed. Switching away from the tab automatically pauses the build; resuming is explicit.
 4. At the release gate, review or download the fixed Document of Approval. **Approve & Deploy** and **Save & Continue Later** both display **DEMO ENDED**. They do not deploy, save, grant approval or contact an external service.
@@ -27,7 +27,7 @@ The original reference documents in this repository are preserved. Synced ChatGP
 
 The intake includes 24 rule-pack records, including one explicit applicability exclusion, plus three owner-requested Additional Tests. The application activates 26 tests from the confirmed facts. Both documents share these identities, conditions, requirement links and reference outcomes.
 
-Version 1.2 adds the logical implementation scope, six protected architecture invariants, prohibited changes, canonical output obligations and five unresolved decision gates. The approval report answers these constraints and preserves execution prerequisites and operational uncertainty. The brief enables contract derivation; it is not itself an executable coding-agent contract. **Download the version 1.2 brief again:** older accepted bytes no longer start a build. The Download Input Document action supplies the accepted file, while New Build selects it for intake.
+Version 1.2 adds the logical implementation scope, six protected architecture invariants, prohibited changes, canonical output obligations and five unresolved decision gates. The approval report answers these constraints and preserves execution prerequisites and operational uncertainty. The brief enables contract derivation; it is not itself an executable coding-agent contract. Older accepted bytes no longer start a build. The owner distributes the accepted version 1.2 file directly, and New Build selects it for intake. The sidebar links to the CSCF Core Definition at https://cscf-master-concept.vercel.app/#contracts.
 
 ## Run locally
 
