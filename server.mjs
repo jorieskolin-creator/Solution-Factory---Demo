@@ -1,0 +1,10 @@
+import express from 'express';
+import { fileURLToPath } from 'node:url';
+const app = express();
+app.disable('x-powered-by');
+app.use((_req, res, next) => { res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('Referrer-Policy', 'same-origin'); next(); });
+app.get('/health', (_req, res) => res.json({ status: 'ok', application: 'cscf-demo' }));
+app.use(express.static(fileURLToPath(new URL('./dist', import.meta.url)), { index: 'index.html' }));
+app.use((_req, res) => res.status(404).send('Not found'));
+const server = app.listen(Number(process.env.PORT || 3000), '0.0.0.0', () => console.log('CSCF demo ready'));
+process.on('SIGTERM', () => server.close(() => process.exit(0)));
