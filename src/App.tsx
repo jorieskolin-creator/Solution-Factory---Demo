@@ -82,7 +82,7 @@ export default function App() {
       <button className={`nav-item ${view === 'factory' ? 'selected' : ''}`} onClick={() => setView('factory')}><Layers3 size={19}/> Factory overview <span className="nav-count">3</span></button>
       <button className={`nav-item ${view === 'requirements' ? 'selected' : ''}`} onClick={() => setView('requirements')}><BookOpen size={19}/> Build requirements</button>
       <button className={`nav-item ${view === 'tests' ? 'selected' : ''}`} onClick={() => setView('tests')}><ShieldCheck size={19}/> Test register</button>
-      <a className="nav-item" href="https://cscf-master-concept.vercel.app/#contracts" target="_blank" rel="noopener noreferrer"><BookOpen size={19}/> CSCF Core Definition</a>
+      <a className="nav-item" href="https://cscf-master-concept.vercel.app/#top" target="_blank" rel="noopener noreferrer"><BookOpen size={19}/> CSCF Core Definition</a>
       <div className="sidebar-bottom"><div className="environment-dot"/> CONTROLLED WORKSPACE<p>Governed requirements<br/>Human release authority</p><div className="sidebar-profile"><span>JS</span><div>Jori Eskolin<small>Solution owner</small></div></div></div>
     </aside>
     <div className="main-shell">

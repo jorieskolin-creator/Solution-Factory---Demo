@@ -27,7 +27,7 @@ The original reference documents in this repository are preserved. Synced ChatGP
 
 The intake includes 24 rule-pack records, including one explicit applicability exclusion, plus three owner-requested Additional Tests. The application activates 26 tests from the confirmed facts. Both documents share these identities, conditions, requirement links and reference outcomes.
 
-Version 1.2 adds the logical implementation scope, six protected architecture invariants, prohibited changes, canonical output obligations and five unresolved decision gates. The approval report answers these constraints and preserves execution prerequisites and operational uncertainty. The brief enables contract derivation; it is not itself an executable coding-agent contract. Older accepted bytes no longer start a build. The owner distributes the accepted version 1.2 file directly, and New Build selects it for intake. The sidebar links to the CSCF Core Definition at https://cscf-master-concept.vercel.app/#contracts.
+Version 1.2 adds the logical implementation scope, six protected architecture invariants, prohibited changes, canonical output obligations and five unresolved decision gates. The approval report answers these constraints and preserves execution prerequisites and operational uncertainty. The brief enables contract derivation; it is not itself an executable coding-agent contract. Older accepted bytes no longer start a build. The owner distributes the accepted version 1.2 file directly, and New Build selects it for intake. The sidebar links to the CSCF Core Definition at https://cscf-master-concept.vercel.app/#top.
 
 ## Run locally
 
